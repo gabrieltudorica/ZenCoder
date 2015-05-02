@@ -15,9 +15,16 @@ namespace RandomPancakeStack
 
             List<Pancake> pancakes = CreatePancakes(d);
             var permutations = new PancakePermutations(pancakes);
-            List<List<Pancake>> possiblePermutations = permutations.GenerateAll();
 
-            return 1;
+            double totalDeliciousness = 0;
+
+            foreach (List<Pancake> pancakePermutation in permutations.GenerateAll())
+            {
+                var stack = new PancakeStack(pancakePermutation);
+                totalDeliciousness += stack.ComputeDeliciousness();
+            }
+            
+            return totalDeliciousness;
         }
         
         private List<Pancake> CreatePancakes(int[] deliciousness)
