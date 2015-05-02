@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pancake.cs" />
+    <Compile Include="PancakePermutations.cs" />
     <Compile Include="RandomPancakeStackDiv2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

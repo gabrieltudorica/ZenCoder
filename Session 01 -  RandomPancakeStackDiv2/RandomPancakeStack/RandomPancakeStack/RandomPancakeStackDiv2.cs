@@ -5,9 +5,7 @@ namespace RandomPancakeStack
     //Problem: https://arena.topcoder.com/#/u/practiceCode/16444/47662/13749/2/326037
 
     public class RandomPancakeStackDiv2
-    {       
-        Dictionary<int, Pancake> pancakes = new Dictionary<int, Pancake>();
- 
+    {                
         public double ExpectedDeliciousness(int[] d)
         {
             if (d.Length == 0)
@@ -15,25 +13,30 @@ namespace RandomPancakeStack
                 return 0;
             }
 
-            CreatePancakes(d);                   
+            List<Pancake> pancakes = CreatePancakes(d);
+            var permutations = new PancakePermutations(pancakes);
+            List<List<Pancake>> possiblePermutations = permutations.GenerateAll();
 
             return 1;
         }
-
-        private void CreatePancakes(int[] deliciousness)
+        
+        private List<Pancake> CreatePancakes(int[] deliciousness)
         {
+            var pancakes = new List<Pancake>();
+
             for (int index = 0; index < deliciousness.Length; index++)
             {
-                CreateSinglePancake(index, deliciousness[index]);
+                pancakes.Add(CreateSinglePancake(index, deliciousness[index]));
             }
+
+            return pancakes;
         }
 
-        private void CreateSinglePancake(int index, int deliciousness)
+        private Pancake CreateSinglePancake(int index, int deliciousness)
         {
             int width = index + 1;
-            var pancake = new Pancake(width, deliciousness);
-
-            pancakes.Add(index, pancake);
+            
+            return new Pancake(width, deliciousness);
         }
     }
 }
