@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace HangmanGame
 {
@@ -23,7 +24,7 @@ namespace HangmanGame
 
         public bool IsLetterValid(char letter)
         {
-            return solution.Contains(letter.ToString());
+            return solution.IndexOf(letter.ToString(), StringComparison.InvariantCultureIgnoreCase) != -1;
         }
 
         public bool SolutionFound()
@@ -65,7 +66,7 @@ namespace HangmanGame
         {
             for (int letterIndex = 0; letterIndex < solution.Length; letterIndex++)
             {
-                if (solution[letterIndex] == letter)
+                if (string.Equals(solution[letterIndex].ToString(), letter.ToString(),StringComparison.InvariantCultureIgnoreCase))
                 {
                     partialSolution[letterIndex] = letter;
                 }
