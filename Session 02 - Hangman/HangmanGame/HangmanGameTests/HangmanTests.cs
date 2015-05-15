@@ -83,6 +83,19 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
+        public void WhenAllGuessesAreCorrect_GetPartialWord_ReturnsTheRevealedSolutionIncrementally()
+        {
+            hangman.AttemptGuess('a');
+            Assert.AreEqual("HAN__AN", hangman.GetPartialWord());
+
+            hangman.AttemptGuess('g');
+            Assert.AreEqual("HANG_AN", hangman.GetPartialWord());
+
+            hangman.AttemptGuess('m');
+            Assert.AreEqual("HANGMAN", hangman.GetPartialWord());
+        }
+
+        [TestMethod]
         public void WhenLetterIsNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetter()
         {
             const char invalidLetter = 'x';
