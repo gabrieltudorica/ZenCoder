@@ -39,5 +39,10 @@ namespace HangmanGame
         {
             return invalidChosenLetters;
         }
+
+        public bool IsGameOver()
+        {
+            return solution.Solved();
+        }
     }
 }

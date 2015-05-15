@@ -129,6 +129,24 @@ namespace HangmanGameTests
             Assert.AreEqual(0, invalidChosenLetters.Count);
         }
 
+        [TestMethod]
+        public void WhenSolutionIsNotFound_IsGameOver_ReturnsFalse()
+        {
+            hangman.AttemptGuess('g');
+            
+            Assert.AreEqual(false, hangman.IsGameOver());
+        }
+
+        [TestMethod]
+        public void WhenSolutionFound_IsGameOver_ReturnsTrue()
+        {
+            hangman.AttemptGuess('a');
+            hangman.AttemptGuess('g');            
+            hangman.AttemptGuess('m');
+
+            Assert.AreEqual(true, hangman.IsGameOver());
+        }
+
         private void MakeMultipleFailedGuesses(IEnumerable<char> invalidLetters)
         {
             foreach (char invalidLetter in invalidLetters)
