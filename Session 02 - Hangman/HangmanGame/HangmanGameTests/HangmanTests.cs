@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HangmanGame;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,6 +8,8 @@ namespace HangmanGameTests
     [TestClass]
     public class HangmanTests
     {
+        private const int MaxAttempts = 6;
+
         private WordSolution solution;
         private Hangman hangman;
 
@@ -22,7 +25,7 @@ namespace HangmanGameTests
         {
             int remainingAttempts = hangman.RemainingAttempts;
 
-            Assert.AreEqual(6, remainingAttempts);
+            Assert.AreEqual(MaxAttempts, remainingAttempts);
         }
 
         [TestMethod]
@@ -32,7 +35,7 @@ namespace HangmanGameTests
 
             int remainingAttempts = hangman.RemainingAttempts;
 
-            Assert.AreEqual(5, remainingAttempts);
+            Assert.AreEqual(MaxAttempts -1, remainingAttempts);
         }
 
         [TestMethod]
@@ -42,7 +45,19 @@ namespace HangmanGameTests
 
             int remainingAttempts = hangman.RemainingAttempts;
 
-            Assert.AreEqual(6, remainingAttempts);
+            Assert.AreEqual(MaxAttempts, remainingAttempts);
+        }
+
+        [TestMethod]
+        public void WhenMultipleLettersAreNotGuessed_RemainingAttempts_DecrementsWithTheTotalOfFailedGuesses()
+        {
+            var expectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
+            MakeMultipleFailedGuesses(expectedInvalidLetters);
+
+            int expectedRemainingAttempts = MaxAttempts - expectedInvalidLetters.Count();
+            int actualRemainingAttempts = hangman.RemainingAttempts;
+
+            Assert.AreEqual(expectedRemainingAttempts, actualRemainingAttempts);
         }
 
         [TestMethod]
@@ -82,11 +97,8 @@ namespace HangmanGameTests
         [TestMethod]
         public void WhenMultipleLettersAreNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetters()
         {
-            var explectedInvalidLetters = new[] {'z', 'x', 'r', 'y'};
-            foreach (char invalidLetter in explectedInvalidLetters)
-            {
-                hangman.AttemptGuess(invalidLetter);    
-            }            
+            var explectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
+            MakeMultipleFailedGuesses(explectedInvalidLetters);       
 
             List<char> actualInvalidLetters = hangman.GetInvalidChosenLetters();
 
@@ -102,6 +114,14 @@ namespace HangmanGameTests
             List<char> invalidChosenLetters = hangman.GetInvalidChosenLetters();
 
             Assert.AreEqual(0, invalidChosenLetters.Count);
+        }
+
+        private void MakeMultipleFailedGuesses(IEnumerable<char> invalidLetters)
+        {
+            foreach (char invalidLetter in invalidLetters)
+            {
+                hangman.AttemptGuess(invalidLetter);
+            }     
         }
     }
 }
