@@ -7,7 +7,7 @@ namespace HangmanGameTests
     public class WordSolutionTests
     {
         [TestMethod]
-        public void WhenFirstAndLastLettersNotContainedInTheWord_GetPartial_RevealsFirstAndLastLetters()
+        public void FirstAndLastLettersNotContainedInTheWord_GetPartial_RevealsFirstAndLastLetters()
         {
             const string inputWord = "someWord";
 
@@ -18,7 +18,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenFirstLetterIsDuplicated_GetPartial_RevealsTheDuplicatedFirstLetter()
+        public void FirstLetterIsDuplicated_GetPartial_RevealsTheDuplicatedFirstLetter()
         {
             const string inputWord = "bomberman";
 
@@ -29,7 +29,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenLastLetterIsDuplicated_GetPartial_RevelasTheDuplicatedLastLetter()
+        public void LastLetterIsDuplicated_GetPartial_RevelasTheDuplicatedLastLetter()
         {
             const string inputWord = "johann";
 
@@ -40,7 +40,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenBothFirstAndLastLettersAreDuplicated_GetPartial_RevealsAllDuplicatedLetters()
+        public void BothFirstAndLastLettersAreDuplicated_GetPartial_RevealsAllDuplicatedLetters()
         {
             const string inputWord = "perspective";
 
@@ -51,7 +51,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenFirstAndLastLettersAreTheSame_GetPartial_RevealsDuplicatedLetters()
+        public void FirstAndLastLettersAreTheSame_GetPartial_RevealsDuplicatedLetters()
         {
             const string inputWord = "synopsis";
 

@@ -21,7 +21,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenGameStarts_RemainingAttempts_ReturnsSix()
+        public void GameStarts_RemainingAttempts_ReturnsSix()
         {
             int remainingAttempts = hangman.RemainingAttempts;
 
@@ -29,7 +29,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenLetterIsNotGuessed_RemainingAttempts_DecrementsByOne()
+        public void LetterIsNotGuessed_RemainingAttempts_DecrementsByOne()
         {
             hangman.AttemptGuess('x');
 
@@ -39,7 +39,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenLetterIsGuessed_RemainingAttempts_DoesNotDecrement()
+        public void LetterIsGuessed_RemainingAttempts_DoesNotDecrement()
         {
             hangman.AttemptGuess('g');
 
@@ -49,7 +49,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenMultipleLettersAreNotGuessed_RemainingAttempts_DecrementsWithTheTotalOfFailedGuesses()
+        public void MultipleLettersAreNotGuessed_RemainingAttempts_DecrementsWithTheTotalOfFailedGuesses()
         {
             var expectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
             MakeMultipleFailedGuesses(expectedInvalidLetters);
@@ -61,7 +61,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenLetterIsNotGuessed_GetPartialWord_RemainsUnchanged()
+        public void LetterIsNotGuessed_GetPartialWord_RemainsUnchanged()
         {
             string expected = hangman.GetPartialWord();
             hangman.AttemptGuess('x');
@@ -72,7 +72,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenLetterIsGuessed_GetPartialWord_RevealsGuessedLetter()
+        public void LetterIsGuessed_GetPartialWord_RevealsGuessedLetter()
         {
             const string expected = "H_NG__N";
             hangman.AttemptGuess('g');
@@ -83,7 +83,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenAllGuessesAreCorrect_GetPartialWord_ReturnsTheRevealedSolutionIncrementally()
+        public void AllGuessesAreCorrect_GetPartialWord_ReturnsTheRevealedSolutionIncrementally()
         {
             hangman.AttemptGuess('a');
             Assert.AreEqual("HAN__AN", hangman.GetPartialWord());
@@ -96,7 +96,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenLetterIsNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetter()
+        public void LetterIsNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetter()
         {
             const char invalidLetter = 'x';
             hangman.AttemptGuess(invalidLetter);
@@ -108,7 +108,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenMultipleLettersAreNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetters()
+        public void MultipleLettersAreNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetters()
         {
             var explectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
             MakeMultipleFailedGuesses(explectedInvalidLetters);       
@@ -119,7 +119,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenLetterIsGuessed_GetInvalidChosenLetters_ReturnsAnEmptyList()
+        public void LetterIsGuessed_GetInvalidChosenLetters_ReturnsAnEmptyList()
         {
             const char invalidLetter = 'g';
             hangman.AttemptGuess(invalidLetter);
@@ -130,7 +130,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenSolutionIsNotFound_IsGameOver_ReturnsFalse()
+        public void SolutionIsNotFound_IsGameOver_ReturnsFalse()
         {
             hangman.AttemptGuess('g');
             
@@ -138,7 +138,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenSolutionFound_IsGameOver_ReturnsTrue()
+        public void SolutionFound_IsGameOver_ReturnsTrue()
         {
             hangman.AttemptGuess('a');
             hangman.AttemptGuess('g');            
@@ -148,7 +148,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenRemainingAttemptsIsGreaterThanZero_IsGameOver_ReturnsFalse()
+        public void RemainingAttemptsIsGreaterThanZero_IsGameOver_ReturnsFalse()
         {
             hangman.AttemptGuess('x');
 
@@ -156,7 +156,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void WhenRemainingAttemptsIsZero_IsGameOver_ReturnsTrue()
+        public void RemainingAttemptsIsZero_IsGameOver_ReturnsTrue()
         {
             hangman.AttemptGuess('x');
             hangman.AttemptGuess('x');
