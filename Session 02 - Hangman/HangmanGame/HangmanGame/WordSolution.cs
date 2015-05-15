@@ -27,7 +27,7 @@ namespace HangmanGame
             return solution.IndexOf(letter.ToString(), StringComparison.InvariantCultureIgnoreCase) != -1;
         }
 
-        public bool Solved()
+        public bool IsSolved()
         {
             return !partialSolution.Contains('_');
         }
