@@ -16,6 +16,14 @@
         public string GetPartialWord()
         {
             return solution.GetPartial();
-        }        
+        }
+
+        public void AttemptGuess(char letter)
+        {
+            if (!solution.IsLetterValid(letter))
+            {
+                RemainingAttempts--;
+            }
+        }
     }
 }
