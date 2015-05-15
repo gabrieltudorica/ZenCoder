@@ -42,7 +42,7 @@ namespace HangmanGame
 
         public bool IsGameOver()
         {
-            return solution.Solved();
+            return RemainingAttempts==0 || solution.Solved();
         }
     }
 }
