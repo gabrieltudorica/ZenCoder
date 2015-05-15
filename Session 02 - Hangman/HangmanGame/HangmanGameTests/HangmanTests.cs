@@ -1,4 +1,5 @@
-﻿using HangmanGame;
+﻿using System.Collections.Generic;
+using HangmanGame;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HangmanGameTests
@@ -64,6 +65,43 @@ namespace HangmanGameTests
             string actual = hangman.GetPartialWord();
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void WhenLetterIsNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetter()
+        {
+            const char invalidLetter = 'x';
+            hangman.AttemptGuess(invalidLetter);
+
+            List<char> invalidChosenLetters = hangman.GetInvalidChosenLetters();
+
+            Assert.AreEqual(1, invalidChosenLetters.Count);
+            Assert.AreEqual(invalidLetter, invalidChosenLetters[0]);
+        }
+
+        [TestMethod]
+        public void WhenMultipleLettersAreNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetters()
+        {
+            var explectedInvalidLetters = new[] {'z', 'x', 'r', 'y'};
+            foreach (char invalidLetter in explectedInvalidLetters)
+            {
+                hangman.AttemptGuess(invalidLetter);    
+            }            
+
+            List<char> actualInvalidLetters = hangman.GetInvalidChosenLetters();
+
+            CollectionAssert.AreEqual(explectedInvalidLetters, actualInvalidLetters);
+        }
+
+        [TestMethod]
+        public void WhenLetterIsGuessed_GetInvalidChosenLetters_ReturnsAnEmptyList()
+        {
+            const char invalidLetter = 'g';
+            hangman.AttemptGuess(invalidLetter);
+
+            List<char> invalidChosenLetters = hangman.GetInvalidChosenLetters();
+
+            Assert.AreEqual(0, invalidChosenLetters.Count);
         }
     }
 }
