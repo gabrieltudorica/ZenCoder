@@ -3,6 +3,7 @@
     public class Hangman
     {
         private const int MaxAttempts = 6;
+        
         private readonly WordSolution solution;
         public int RemainingAttempts { get; private set; }
 
@@ -23,7 +24,10 @@
             if (!solution.IsLetterValid(letter))
             {
                 RemainingAttempts--;
+                return;
             }
+
+            solution.AddToPartialSolution(letter);
         }
     }
 }

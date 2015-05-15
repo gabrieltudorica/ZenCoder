@@ -32,6 +32,14 @@ namespace HangmanGame
             return partialSolution.Contains('_');
         }
 
+        public void AddToPartialSolution(char letter)
+        {
+            if (IsLetterValid(letter))
+            {
+                RevealLetter(letter);
+            }
+        }
+
         private void InitializePartialSolution()
         {            
             InsertPlaceholders();   
@@ -54,21 +62,13 @@ namespace HangmanGame
             AddToPartialSolution(solution[lastLetterIndex]);            
         }
 
-        private void AddToPartialSolution(char letter)
-        {
-            if (IsLetterValid(letter))
-            {
-                RevealLetter(letter);
-            }
-        }        
-
         private void RevealLetter(char letter)
         {
             for (int letterIndex = 0; letterIndex < solution.Length; letterIndex++)
             {
                 if (string.Equals(solution[letterIndex].ToString(), letter.ToString(),StringComparison.InvariantCultureIgnoreCase))
                 {
-                    partialSolution[letterIndex] = letter;
+                    partialSolution[letterIndex] = char.ToUpper(letter);
                 }
             }
         }       
