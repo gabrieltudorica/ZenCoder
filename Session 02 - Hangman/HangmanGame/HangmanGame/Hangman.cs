@@ -36,11 +36,7 @@ namespace HangmanGame
                 return;
             }
 
-            if (!invalidChosenLetters.Contains(character))
-            {
-                RemainingAttempts--;
-                invalidChosenLetters.Add(character);
-            }
+            PenalizePlayerFor(character);
         }
 
         public List<char> GetInvalidChosenLetters()
@@ -51,6 +47,15 @@ namespace HangmanGame
         public bool IsGameOver()
         {
             return RemainingAttempts==0 || word.IsSolved();
+        }
+
+        private void PenalizePlayerFor(char character)
+        {
+            if (!invalidChosenLetters.Contains(character))
+            {
+                RemainingAttempts--;
+                invalidChosenLetters.Add(character);
+            }
         }
     }
 }
