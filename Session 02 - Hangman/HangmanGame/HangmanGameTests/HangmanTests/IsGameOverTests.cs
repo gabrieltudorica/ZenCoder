@@ -17,7 +17,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void SolutionIsNotFound_IsGameOver_ReturnsFalse()
+        public void ReturnsFalse_WhenSolutionIsNotFound()
         {
             hangman.AttemptGuess('g');
 
@@ -25,7 +25,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void SolutionFound_IsGameOver_ReturnsTrue()
+        public void ReturnsTrue_WhenSolutionFound()
         {
             var validLetters = new[] { 'a', 'g', 'm' };
             hangmanTestsHelper.AttemptGuessesWith(validLetters);
@@ -34,7 +34,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void RemainingAttemptsIsGreaterThanZero_IsGameOver_ReturnsFalse()
+        public void ReturnsFalse_WhenRemainingAttemptsIsGreaterThanZero()
         {
             hangman.AttemptGuess('x');
 
@@ -42,7 +42,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void RemainingAttemptsIsZero_IsGameOver_ReturnsTrue()
+        public void ReturnsTrue_WhenRemainingAttemptsIsZero()
         {
             var invalidLetters = new[] { 'x', 'y', 'z', 'r', 'q', 'w' };
             hangmanTestsHelper.AttemptGuessesWith(invalidLetters);

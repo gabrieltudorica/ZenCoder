@@ -17,13 +17,13 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void GameStarts_RemainingAttempts_ReturnsSix()
+        public void ReturnsSix_WhenGameStarts()
         {
             Assert.AreEqual(hangmanTestsHelper.GetMaximumAttempts(), hangman.RemainingAttempts);
         }
 
         [TestMethod]
-        public void LetterIsNotGuessed_RemainingAttempts_DecrementsByOne()
+        public void DecrementsByOne_WhenLetterIsNotGuessed()
         {
             hangman.AttemptGuess('x');
 
@@ -32,7 +32,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void LetterIsGuessed_RemainingAttempts_DoesNotDecrement()
+        public void DoesNotDecrement_WhenLetterIsGuessed()
         {
             hangman.AttemptGuess('g');
 
@@ -40,7 +40,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void MultipleLettersAreNotGuessed_RemainingAttempts_DecrementsWithTheTotalOfFailedGuesses()
+        public void DecrementsWithTheTotalOfFailedGuesses_WhenMultipleLettersAreNotGuessed()
         {
             var expectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
             hangmanTestsHelper.AttemptGuessesWith(expectedInvalidLetters);
@@ -51,7 +51,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void SameLetterNotGuessedMultipleTimes_RemainingAttempts_DecrementByOneOnce()
+        public void DecrementByOneOnce_WhenSameLetterNotGuessedMultipleTimes()
         {
             hangman.AttemptGuess('x');
             int expectedRemainingAttempts = hangman.RemainingAttempts;

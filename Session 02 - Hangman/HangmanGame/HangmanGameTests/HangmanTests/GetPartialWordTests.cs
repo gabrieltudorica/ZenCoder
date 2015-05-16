@@ -17,7 +17,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void LetterIsNotGuessed_GetPartialWord_RemainsUnchanged()
+        public void RemainsUnchanged_WhenLetterIsNotGuessed()
         {
             string expected = hangman.GetPartialWord();
             hangman.AttemptGuess('x');
@@ -26,7 +26,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void LetterIsGuessed_GetPartialWord_RevealsGuessedLetter()
+        public void RevealsGuessedLetter_WhenLetterIsGuessed()
         {
             const string expected = "H_NG__N";
             hangman.AttemptGuess('g');
@@ -35,7 +35,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void AllGuessesAreCorrect_GetPartialWord_ReturnsTheRevealedSolutionIncrementally()
+        public void ReturnsTheRevealedSolutionIncrementally_WhenAllGuessesAreCorrect()
         {
             hangman.AttemptGuess('a');
             Assert.AreEqual("HAN__AN", hangman.GetPartialWord());

@@ -18,7 +18,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void LetterIsNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetter()
+        public void ReturnsAListWithTheChosenLetter_WhenLetterIsNotGuessed()
         {
             const char invalidLetter = 'x';
             hangman.AttemptGuess(invalidLetter);
@@ -30,7 +30,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void MultipleLettersAreNotGuessed_GetInvalidChosenLetters_ReturnsTheChosenLetters()
+        public void ReturnsTheChosenLetters_WhenMultipleLettersAreNotGuessed()
         {
             var explectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
             hangmanTestsHelper.AttemptGuessesWith(explectedInvalidLetters);
@@ -39,7 +39,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void LetterIsGuessed_GetInvalidChosenLetters_ReturnsAnEmptyList()
+        public void ReturnsAnEmptyList_WhenLetterIsGuessed()
         {
             const char invalidLetter = 'g';
             hangman.AttemptGuess(invalidLetter);
@@ -50,7 +50,7 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void SameLetterNotGuessedMultipleTimes_GetInvalidChosenLetters_ReturnsTheNotGuessedLetterOnce()
+        public void ReturnsTheNotGuessedLetterOnce_WhenSameLetterNotGuessedMultipleTimes()
         {
             hangmanTestsHelper.AttemptMultipleGuessesWithSingleLetter('x', 10);
 
