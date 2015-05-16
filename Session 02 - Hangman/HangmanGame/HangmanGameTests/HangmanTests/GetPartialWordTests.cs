@@ -19,10 +19,10 @@ namespace HangmanGameTests.HangmanTests
         [TestMethod]
         public void RemainsUnchanged_WhenLetterIsNotGuessed()
         {
-            string expected = hangman.GetPartialWord();
+            string expected = hangman.GetPuzzle();
             hangman.AttemptGuess('x');
 
-            Assert.AreEqual(expected, hangman.GetPartialWord());
+            Assert.AreEqual(expected, hangman.GetPuzzle());
         }
 
         [TestMethod]
@@ -31,20 +31,20 @@ namespace HangmanGameTests.HangmanTests
             const string expected = "H_NG__N";
             hangman.AttemptGuess('g');
 
-            Assert.AreEqual(expected, hangman.GetPartialWord());
+            Assert.AreEqual(expected, hangman.GetPuzzle());
         }
 
         [TestMethod]
         public void ReturnsTheRevealedSolutionIncrementally_WhenAllGuessesAreCorrect()
         {
             hangman.AttemptGuess('a');
-            Assert.AreEqual("HAN__AN", hangman.GetPartialWord());
+            Assert.AreEqual("HAN__AN", hangman.GetPuzzle());
 
             hangman.AttemptGuess('g');
-            Assert.AreEqual("HANG_AN", hangman.GetPartialWord());
+            Assert.AreEqual("HANG_AN", hangman.GetPuzzle());
 
             hangman.AttemptGuess('m');
-            Assert.AreEqual("HANGMAN", hangman.GetPartialWord());
+            Assert.AreEqual("HANGMAN", hangman.GetPuzzle());
         }
     }
 }

@@ -17,12 +17,12 @@ namespace HangmanGame
             InitializePartialSolution();        
         }        
 
-        public string GetPartial()
+        public string GetPartialSolution()
         {
             return new string(partialSolution);
         }
 
-        public bool IsLetterValid(char letter)
+        public bool SolutionContainsLetter(char letter)
         {
             return solution.IndexOf(letter.ToString(), StringComparison.InvariantCultureIgnoreCase) != -1;
         }
@@ -34,7 +34,7 @@ namespace HangmanGame
 
         public void AddLetterToSolution(char letter)
         {
-            if (IsLetterValid(letter))
+            if (SolutionContainsLetter(letter))
             {
                 RevealAllLettersWith(letter);
             }

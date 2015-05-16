@@ -18,14 +18,14 @@ namespace HangmanGame
             RemainingAttempts = MaxAttempts;            
         }        
 
-        public string GetPartialWord()
+        public string GetPuzzle()
         {
-            return word.GetPartial();
+            return word.GetPartialSolution();
         }
 
         public void AttemptGuess(char letter)
         {
-            if (word.IsLetterValid(letter))
+            if (word.SolutionContainsLetter(letter))
             {
                 word.AddLetterToSolution(letter);
                 return;

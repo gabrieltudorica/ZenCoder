@@ -9,56 +9,37 @@ namespace HangmanGameTests
         [TestMethod]
         public void FirstAndLastLettersNotContainedInTheWord_GetPartial_RevealsFirstAndLastLetters()
         {
-            const string inputWord = "someWord";
-
-            var word = new HiddenWord(inputWord);
-            string partialSolution = word.GetPartial();
-
-            Assert.AreEqual("S______D", partialSolution);
+            Assert.AreEqual("S______D", GetInitialPuzzleFor("someWord"));
         }
 
         [TestMethod]
         public void FirstLetterIsDuplicated_GetPartial_RevealsTheDuplicatedFirstLetter()
         {
-            const string inputWord = "bomberman";
-
-            var word = new HiddenWord(inputWord);
-            string partialWord = word.GetPartial();
-
-            Assert.AreEqual("B__B____N", partialWord);
+            Assert.AreEqual("B__B____N", GetInitialPuzzleFor("bomberman"));
         }
 
         [TestMethod]
         public void LastLetterIsDuplicated_GetPartial_RevelasTheDuplicatedLastLetter()
         {
-            const string inputWord = "johann";
-
-            var word = new HiddenWord(inputWord);
-            string partialWord = word.GetPartial();
-
-            Assert.AreEqual("J___NN", partialWord);
+            Assert.AreEqual("J___NN", GetInitialPuzzleFor("johann"));
         }
 
         [TestMethod]
         public void BothFirstAndLastLettersAreDuplicated_GetPartial_RevealsAllDuplicatedLetters()
         {
-            const string inputWord = "perspective";
-
-            var word = new HiddenWord(inputWord);
-            string partialWord = word.GetPartial();
-
-            Assert.AreEqual("PE__PE____E", partialWord);
+            Assert.AreEqual("PE__PE____E", GetInitialPuzzleFor("perspective"));
         }
 
         [TestMethod]
         public void FirstAndLastLettersAreTheSame_GetPartial_RevealsDuplicatedLetters()
         {
-            const string inputWord = "synopsis";
+            Assert.AreEqual("S____S_S", GetInitialPuzzleFor("synopsis"));
+        }
 
-            var word = new HiddenWord(inputWord);
-            string partialWord = word.GetPartial();
-
-            Assert.AreEqual("S____S_S", partialWord);
+        private static string GetInitialPuzzleFor(string solution)
+        {
+            var word = new HiddenWord(solution);
+            return word.GetPartialSolution();
         }
     }
 }
