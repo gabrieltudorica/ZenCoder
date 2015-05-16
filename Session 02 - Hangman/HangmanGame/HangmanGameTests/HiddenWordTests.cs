@@ -4,15 +4,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HangmanGameTests
 {
     [TestClass]
-    public class WordSolutionTests
+    public class HiddenWordTests
     {
         [TestMethod]
         public void FirstAndLastLettersNotContainedInTheWord_GetPartial_RevealsFirstAndLastLetters()
         {
             const string inputWord = "someWord";
 
-            var solution = new WordSolution(inputWord);
-            string partialSolution = solution.GetPartial();
+            var word = new HiddenWord(inputWord);
+            string partialSolution = word.GetPartial();
 
             Assert.AreEqual("S______D", partialSolution);
         }
@@ -22,8 +22,8 @@ namespace HangmanGameTests
         {
             const string inputWord = "bomberman";
 
-            var solution = new WordSolution(inputWord);
-            string partialWord = solution.GetPartial();
+            var word = new HiddenWord(inputWord);
+            string partialWord = word.GetPartial();
 
             Assert.AreEqual("B__B____N", partialWord);
         }
@@ -33,8 +33,8 @@ namespace HangmanGameTests
         {
             const string inputWord = "johann";
 
-            var solution = new WordSolution(inputWord);
-            string partialWord = solution.GetPartial();
+            var word = new HiddenWord(inputWord);
+            string partialWord = word.GetPartial();
 
             Assert.AreEqual("J___NN", partialWord);
         }
@@ -44,8 +44,8 @@ namespace HangmanGameTests
         {
             const string inputWord = "perspective";
 
-            var solution = new WordSolution(inputWord);
-            string partialWord = solution.GetPartial();
+            var word = new HiddenWord(inputWord);
+            string partialWord = word.GetPartial();
 
             Assert.AreEqual("PE__PE____E", partialWord);
         }
@@ -55,8 +55,8 @@ namespace HangmanGameTests
         {
             const string inputWord = "synopsis";
 
-            var solution = new WordSolution(inputWord);
-            string partialWord = solution.GetPartial();
+            var word = new HiddenWord(inputWord);
+            string partialWord = word.GetPartial();
 
             Assert.AreEqual("S____S_S", partialWord);
         }

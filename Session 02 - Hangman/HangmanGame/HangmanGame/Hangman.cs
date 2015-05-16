@@ -6,28 +6,28 @@ namespace HangmanGame
     {
         private const int MaxAttempts = 6;
         
-        private readonly WordSolution solution;
+        private readonly HiddenWord word;
         private readonly List<char> invalidChosenLetters = new List<char>(); 
 
         public int RemainingAttempts { get; private set; }
 
-        public Hangman(WordSolution solution)
+        public Hangman(HiddenWord word)
         {
-            this.solution = solution;
+            this.word = word;
 
             RemainingAttempts = MaxAttempts;            
         }        
 
         public string GetPartialWord()
         {
-            return solution.GetPartial();
+            return word.GetPartial();
         }
 
         public void AttemptGuess(char letter)
         {
-            if (solution.IsLetterValid(letter))
+            if (word.IsLetterValid(letter))
             {
-                solution.AddToPartialSolution(letter);
+                word.AddLetterToSolution(letter);
                 return;
             }
 
@@ -45,7 +45,7 @@ namespace HangmanGame
 
         public bool IsGameOver()
         {
-            return RemainingAttempts==0 || solution.IsSolved();
+            return RemainingAttempts==0 || word.IsSolved();
         }
     }
 }

@@ -9,8 +9,8 @@ namespace HangmanGameTests.HangmanTests
 
         public HangmanTestsHelper()
         {
-            var solution = new WordSolution("hangman");
-            hangman = new Hangman(solution);
+            var word = new HiddenWord("hangman");
+            hangman = new Hangman(word);
         }
 
         public Hangman GetInstance()

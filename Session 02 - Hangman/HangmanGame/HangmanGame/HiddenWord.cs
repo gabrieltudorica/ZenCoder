@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace HangmanGame
 {
-    public class WordSolution
+    public class HiddenWord
     {
         private readonly string solution;
         private readonly char[] partialSolution;
         private const char Placeholder = '_';
 
-        public WordSolution(string word)
+        public HiddenWord(string word)
         {
             solution = word.ToUpper();
             partialSolution = new char[word.Length];
@@ -32,21 +32,21 @@ namespace HangmanGame
             return !partialSolution.Contains('_');
         }
 
-        public void AddToPartialSolution(char letter)
+        public void AddLetterToSolution(char letter)
         {
             if (IsLetterValid(letter))
             {
-                RevealLetter(letter);
+                RevealAllLettersWith(letter);
             }
         }
 
         private void InitializePartialSolution()
         {            
-            InsertPlaceholders();   
+            AddPlaceholders();   
             RevealFirstAndLastLetters();
         }
 
-        private void InsertPlaceholders()
+        private void AddPlaceholders()
         {
             for (int i = 0; i < partialSolution.Length; i++)
             {
@@ -56,21 +56,31 @@ namespace HangmanGame
 
         private void RevealFirstAndLastLetters()
         {
-            AddToPartialSolution(solution[0]);
+            AddLetterToSolution(solution[0]);
 
             int lastLetterIndex = solution.Length - 1;
-            AddToPartialSolution(solution[lastLetterIndex]);            
+            AddLetterToSolution(solution[lastLetterIndex]);            
         }
 
-        private void RevealLetter(char letter)
+        private void RevealAllLettersWith(char guessedLetter)
         {
             for (int letterIndex = 0; letterIndex < solution.Length; letterIndex++)
             {
-                if (string.Equals(solution[letterIndex].ToString(), letter.ToString(),StringComparison.InvariantCultureIgnoreCase))
-                {
-                    partialSolution[letterIndex] = char.ToUpper(letter);
-                }
+                RevealLetter(letterIndex, guessedLetter);
             }
-        }       
+        }
+
+        private void RevealLetter(int letterIndex, char guessedLetter)
+        {
+            if (AreEqual(solution[letterIndex], guessedLetter))
+            {
+                partialSolution[letterIndex] = char.ToUpper(guessedLetter);
+            }
+        }
+
+        private static bool AreEqual(char letterA, char letterB)
+        {
+            return string.Equals(letterA.ToString(), letterB.ToString(), StringComparison.InvariantCultureIgnoreCase);
+        }
     }
 }
