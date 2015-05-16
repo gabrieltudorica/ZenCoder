@@ -52,7 +52,7 @@ namespace HangmanGameTests
         public void MultipleLettersAreNotGuessed_RemainingAttempts_DecrementsWithTheTotalOfFailedGuesses()
         {
             var expectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
-            MakeMultipleFailedGuesses(expectedInvalidLetters);
+            AttemptGuessesWith(expectedInvalidLetters);
 
             int expectedRemainingAttempts = MaxAttempts - expectedInvalidLetters.Count();
             int actualRemainingAttempts = hangman.RemainingAttempts;
@@ -111,7 +111,7 @@ namespace HangmanGameTests
         public void MultipleLettersAreNotGuessed_GetInvalidChosenLetters_ReturnsTheChosenLetters()
         {
             var explectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
-            MakeMultipleFailedGuesses(explectedInvalidLetters);       
+            AttemptGuessesWith(explectedInvalidLetters);       
 
             List<char> actualInvalidLetters = hangman.GetInvalidChosenLetters();
 
@@ -140,10 +140,9 @@ namespace HangmanGameTests
         [TestMethod]
         public void SolutionFound_IsGameOver_ReturnsTrue()
         {
-            hangman.AttemptGuess('a');
-            hangman.AttemptGuess('g');            
-            hangman.AttemptGuess('m');
-
+            var validLetters = new[] { 'a', 'g', 'm'};
+            AttemptGuessesWith(validLetters);
+            
             Assert.AreEqual(true, hangman.IsGameOver());
         }
 
@@ -158,13 +157,8 @@ namespace HangmanGameTests
         [TestMethod]
         public void RemainingAttemptsIsZero_IsGameOver_ReturnsTrue()
         {
-
-            hangman.AttemptGuess('x');
-            hangman.AttemptGuess('y');
-            hangman.AttemptGuess('z');
-            hangman.AttemptGuess('r');
-            hangman.AttemptGuess('q');
-            hangman.AttemptGuess('w');
+            var invalidLetters = new[] { 'x', 'y', 'z', 'r', 'q', 'w' };
+            AttemptGuessesWith(invalidLetters);
 
             Assert.AreEqual(true, hangman.IsGameOver());
         }
@@ -175,22 +169,16 @@ namespace HangmanGameTests
             hangman.AttemptGuess('x');
             int expectedRemainingAttempts = hangman.RemainingAttempts;
 
-            for (int i = 0; i < 10; i++)
-            {
-                hangman.AttemptGuess('x');
-            }
+            AttemptMultipleGuessesWithSingleLetter('x', 10);
+            
             int actualRemainingAttempts = hangman.RemainingAttempts;
-
             Assert.AreEqual(expectedRemainingAttempts, actualRemainingAttempts);
         }
 
         [TestMethod]
         public void SameLetterNotGuessedMultipleTimes_GetInvalidChosenLetters_ReturnsTheNotGuessedLetterOnce()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                hangman.AttemptGuess('x');
-            }
+            AttemptMultipleGuessesWithSingleLetter('x', 10);
 
             List<char> invalidChosenLetters = hangman.GetInvalidChosenLetters();
 
@@ -198,12 +186,20 @@ namespace HangmanGameTests
             Assert.AreEqual('x', invalidChosenLetters[0]);
         }
 
-        private void MakeMultipleFailedGuesses(IEnumerable<char> invalidLetters)
+        private void AttemptGuessesWith(IEnumerable<char> letters)
         {
-            foreach (char invalidLetter in invalidLetters)
+            foreach (char letter in letters)
             {
-                hangman.AttemptGuess(invalidLetter);
+                hangman.AttemptGuess(letter);
             }     
+        }
+
+        private void AttemptMultipleGuessesWithSingleLetter(char letter, int numberOfAttempts)
+        {
+            for (int i = 0; i < numberOfAttempts; i++)
+            {
+                hangman.AttemptGuess(letter);
+            }
         }
     }
 }
