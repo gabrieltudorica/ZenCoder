@@ -21,7 +21,7 @@ namespace HangmanGameTests.HangmanTests
         {
             hangman.AttemptGuess('g');
 
-            Assert.AreEqual(false, hangman.IsGameOver());
+            Assert.IsFalse(hangman.IsGameOver());
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace HangmanGameTests.HangmanTests
             var validLetters = new[] { 'a', 'g', 'm' };
             hangmanTestsHelper.AttemptGuessesWith(validLetters);
 
-            Assert.AreEqual(true, hangman.IsGameOver());
+            Assert.IsTrue(hangman.IsGameOver());
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace HangmanGameTests.HangmanTests
         {
             hangman.AttemptGuess('x');
 
-            Assert.AreEqual(false, hangman.IsGameOver());
+            Assert.IsFalse(hangman.IsGameOver());
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace HangmanGameTests.HangmanTests
             var invalidLetters = new[] { 'x', 'y', 'z', 'r', 'q', 'w' };
             hangmanTestsHelper.AttemptGuessesWith(invalidLetters);
 
-            Assert.AreEqual(true, hangman.IsGameOver());
+            Assert.IsTrue(hangman.IsGameOver());
         }
     }
 }
