@@ -25,14 +25,17 @@ namespace HangmanGame
 
         public void AttemptGuess(char letter)
         {
-            if (!solution.IsLetterValid(letter))
+            if (solution.IsLetterValid(letter))
             {
-                RemainingAttempts--;
-                invalidChosenLetters.Add(letter);
+                solution.AddToPartialSolution(letter);
                 return;
             }
 
-            solution.AddToPartialSolution(letter);
+            if (!invalidChosenLetters.Contains(letter))
+            {
+                RemainingAttempts--;
+                invalidChosenLetters.Add(letter);
+            }
         }
 
         public List<char> GetInvalidChosenLetters()

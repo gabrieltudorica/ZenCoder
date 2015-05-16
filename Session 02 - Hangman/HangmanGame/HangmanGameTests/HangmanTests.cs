@@ -108,7 +108,7 @@ namespace HangmanGameTests
         }
 
         [TestMethod]
-        public void MultipleLettersAreNotGuessed_GetInvalidChosenLetters_ReturnsAListWithTheChosenLetters()
+        public void MultipleLettersAreNotGuessed_GetInvalidChosenLetters_ReturnsTheChosenLetters()
         {
             var explectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
             MakeMultipleFailedGuesses(explectedInvalidLetters);       
@@ -158,14 +158,44 @@ namespace HangmanGameTests
         [TestMethod]
         public void RemainingAttemptsIsZero_IsGameOver_ReturnsTrue()
         {
+
             hangman.AttemptGuess('x');
-            hangman.AttemptGuess('x');
-            hangman.AttemptGuess('x');
-            hangman.AttemptGuess('x');
-            hangman.AttemptGuess('x');
-            hangman.AttemptGuess('x');
+            hangman.AttemptGuess('y');
+            hangman.AttemptGuess('z');
+            hangman.AttemptGuess('r');
+            hangman.AttemptGuess('q');
+            hangman.AttemptGuess('w');
 
             Assert.AreEqual(true, hangman.IsGameOver());
+        }
+
+        [TestMethod]
+        public void SameLetterNotGuessedMultipleTimes_RemainingAttempts_DecrementByOneOnce()
+        {
+            hangman.AttemptGuess('x');
+            int expectedRemainingAttempts = hangman.RemainingAttempts;
+
+            for (int i = 0; i < 10; i++)
+            {
+                hangman.AttemptGuess('x');
+            }
+            int actualRemainingAttempts = hangman.RemainingAttempts;
+
+            Assert.AreEqual(expectedRemainingAttempts, actualRemainingAttempts);
+        }
+
+        [TestMethod]
+        public void SameLetterNotGuessedMultipleTimes_GetInvalidChosenLetters_ReturnsTheNotGuessedLetterOnce()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                hangman.AttemptGuess('x');
+            }
+
+            List<char> invalidChosenLetters = hangman.GetInvalidChosenLetters();
+
+            Assert.AreEqual(1, invalidChosenLetters.Count);
+            Assert.AreEqual('x', invalidChosenLetters[0]);
         }
 
         private void MakeMultipleFailedGuesses(IEnumerable<char> invalidLetters)
