@@ -23,9 +23,7 @@ namespace HangmanGameTests
         [TestMethod]
         public void GameStarts_RemainingAttempts_ReturnsSix()
         {
-            int remainingAttempts = hangman.RemainingAttempts;
-
-            Assert.AreEqual(MaxAttempts, remainingAttempts);
+            Assert.AreEqual(MaxAttempts, hangman.RemainingAttempts);
         }
 
         [TestMethod]
@@ -33,9 +31,7 @@ namespace HangmanGameTests
         {
             hangman.AttemptGuess('x');
 
-            int remainingAttempts = hangman.RemainingAttempts;
-
-            Assert.AreEqual(MaxAttempts -1, remainingAttempts);
+            Assert.AreEqual(MaxAttempts -1, hangman.RemainingAttempts);
         }
 
         [TestMethod]
@@ -43,9 +39,7 @@ namespace HangmanGameTests
         {
             hangman.AttemptGuess('g');
 
-            int remainingAttempts = hangman.RemainingAttempts;
-
-            Assert.AreEqual(MaxAttempts, remainingAttempts);
+            Assert.AreEqual(MaxAttempts, hangman.RemainingAttempts);
         }
 
         [TestMethod]
@@ -55,9 +49,8 @@ namespace HangmanGameTests
             AttemptGuessesWith(expectedInvalidLetters);
 
             int expectedRemainingAttempts = MaxAttempts - expectedInvalidLetters.Count();
-            int actualRemainingAttempts = hangman.RemainingAttempts;
 
-            Assert.AreEqual(expectedRemainingAttempts, actualRemainingAttempts);
+            Assert.AreEqual(expectedRemainingAttempts, hangman.RemainingAttempts);
         }
 
         [TestMethod]
@@ -66,9 +59,7 @@ namespace HangmanGameTests
             string expected = hangman.GetPartialWord();
             hangman.AttemptGuess('x');
 
-            string actual = hangman.GetPartialWord();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, hangman.GetPartialWord());
         }
 
         [TestMethod]
@@ -77,9 +68,7 @@ namespace HangmanGameTests
             const string expected = "H_NG__N";
             hangman.AttemptGuess('g');
 
-            string actual = hangman.GetPartialWord();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, hangman.GetPartialWord());
         }
 
         [TestMethod]
@@ -113,9 +102,7 @@ namespace HangmanGameTests
             var explectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
             AttemptGuessesWith(explectedInvalidLetters);       
 
-            List<char> actualInvalidLetters = hangman.GetInvalidChosenLetters();
-
-            CollectionAssert.AreEqual(explectedInvalidLetters, actualInvalidLetters);
+            CollectionAssert.AreEqual(explectedInvalidLetters, hangman.GetInvalidChosenLetters());
         }
 
         [TestMethod]
@@ -171,8 +158,7 @@ namespace HangmanGameTests
 
             AttemptMultipleGuessesWithSingleLetter('x', 10);
             
-            int actualRemainingAttempts = hangman.RemainingAttempts;
-            Assert.AreEqual(expectedRemainingAttempts, actualRemainingAttempts);
+            Assert.AreEqual(expectedRemainingAttempts, hangman.RemainingAttempts);
         }
 
         [TestMethod]
