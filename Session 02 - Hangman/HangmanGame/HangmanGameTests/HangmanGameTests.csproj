@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="HangmanTests\AttemptGuessTests.cs" />
     <Compile Include="HangmanTests\GetInvalidChosenLettersTests.cs" />
     <Compile Include="HangmanTests\GetPuzzle.cs" />
     <Compile Include="HangmanTests\HangmanTestsHelper.cs" />

@@ -23,18 +23,23 @@ namespace HangmanGame
             return word.GetPartialSolution();
         }
 
-        public void AttemptGuess(char letter)
+        public void AttemptGuess(char character)
         {
-            if (word.SolutionContainsLetter(letter))
+            if (!char.IsLetter(character))
             {
-                word.AddLetterToSolution(letter);
                 return;
             }
 
-            if (!invalidChosenLetters.Contains(letter))
+            if (word.SolutionContainsLetter(character))
+            {
+                word.AddLetterToSolution(character);
+                return;
+            }
+
+            if (!invalidChosenLetters.Contains(character))
             {
                 RemainingAttempts--;
-                invalidChosenLetters.Add(letter);
+                invalidChosenLetters.Add(character);
             }
         }
 
