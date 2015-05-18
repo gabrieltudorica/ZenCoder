@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MVP;
 
 namespace UI
@@ -11,6 +10,7 @@ namespace UI
         public HangmanView()
         {
             InitializeComponent();
+
             presenter = new Presenter(this);
             NewGame();
         }
@@ -19,7 +19,7 @@ namespace UI
         {
             hiddenWord.Text = viewModel.HiddenWord;
             remainingAttemptsCount.Text = viewModel.RemainingAttempts.ToString();
-            failedGuesses.Text = viewModel.FailedGuesses.ToString();
+            failedGuessesList.Text = viewModel.FailedGuesses;
         }
 
         private void NewGame()

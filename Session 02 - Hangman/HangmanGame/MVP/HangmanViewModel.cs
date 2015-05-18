@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace MVP
+﻿namespace MVP
 {
     public class HangmanViewModel
     {
         public string HiddenWord { get; set; }
         public int RemainingAttempts { get; set; }
-        public List<char> FailedGuesses { get; set; }
+        public string FailedGuesses { get; set; }
     }
 }

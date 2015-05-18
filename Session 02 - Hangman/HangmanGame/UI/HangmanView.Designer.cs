@@ -84,13 +84,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 374);
+            this.ClientSize = new System.Drawing.Size(695, 374);
             this.Controls.Add(this.remainingAttemptsCount);
             this.Controls.Add(this.remainingAttempts);
             this.Controls.Add(this.failedGuessesList);
             this.Controls.Add(this.failedGuesses);
             this.Controls.Add(this.hiddenWord);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "HangmanView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hangman";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HangmanUI_KeyDown);
             this.ResumeLayout(false);
