@@ -20,7 +20,12 @@ namespace UI
             hiddenWord.Text = viewModel.HiddenWord;
             remainingAttemptsCount.Text = viewModel.RemainingAttempts.ToString();
             failedGuessesList.Text = viewModel.FailedGuesses;
-        }
+            
+            if (viewModel.IsGameOver)
+            {
+                EndGame(viewModel.EndGameMessage);
+            }
+        }        
 
         private void NewGame()
         {
@@ -35,9 +40,27 @@ namespace UI
             failedGuessesList.Text = string.Empty;
         }
 
+        private void EndGame(string message)
+        {
+            DialogResult dialogResult = MessageBox.Show(
+                                            message + " Would you like to start a new game?", 
+                                            "Game Over",
+                                            MessageBoxButtons.YesNo);
+            
+            if (dialogResult == DialogResult.Yes)
+            {
+                NewGame();
+            }            
+        }
+
         private void HangmanUI_KeyDown(object sender, KeyEventArgs e)
         {
             presenter.AttemptGuess((char) e.KeyCode);
+        }
+
+        private void StartNewGame_Click(object sender, System.EventArgs e)
+        {
+            NewGame();
         }
     }
 }

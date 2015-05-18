@@ -20,7 +20,7 @@ namespace HangmanGameTests.HangmanTests
         [TestMethod]
         public void ReturnsFlase_WhenSolutionIsNotFound()
         {
-            Assert.IsFalse(hangman.SolutionFound());
+            Assert.IsFalse(hangman.IsSolutionFound());
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace HangmanGameTests.HangmanTests
         {
             hangmanTestsHelper.AttemptGuessesWith(solution);
             
-            Assert.IsTrue(hangman.SolutionFound());
+            Assert.IsTrue(hangman.IsSolutionFound());
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace HangmanGameTests.HangmanTests
             hangmanTestsHelper.AttemptGuessesWith(invalidLettersIgnoredOnceGameIsOver);
 
             Assert.IsTrue(hangman.IsGameOver());
-            Assert.IsTrue(hangman.SolutionFound());
+            Assert.IsTrue(hangman.IsSolutionFound());
             Assert.AreEqual(6, hangman.RemainingAttempts);
             Assert.AreEqual(0, hangman.GetInvalidChosenLetters().Count);
         }

@@ -51,10 +51,10 @@ namespace HangmanGame
 
         public bool IsGameOver()
         {
-            return RemainingAttempts==0 || SolutionFound();
+            return RemainingAttempts==0 || IsSolutionFound();
         }
 
-        public bool SolutionFound()
+        public bool IsSolutionFound()
         {
             return word.IsSolved();
         }
