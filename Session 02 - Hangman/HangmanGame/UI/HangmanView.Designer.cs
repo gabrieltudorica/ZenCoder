@@ -35,7 +35,9 @@
             this.remainingAttemptsCount = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hanging = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hanging)).BeginInit();
             this.SuspendLayout();
             // 
             // hiddenWord
@@ -101,11 +103,20 @@
             this.newGameToolStripMenuItem.Text = "New Game";
             this.newGameToolStripMenuItem.Click += new System.EventHandler(this.StartNewGame_Click);
             // 
+            // hanging
+            // 
+            this.hanging.Location = new System.Drawing.Point(409, 78);
+            this.hanging.Name = "hanging";
+            this.hanging.Size = new System.Drawing.Size(256, 256);
+            this.hanging.TabIndex = 6;
+            this.hanging.TabStop = false;
+            // 
             // HangmanView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 374);
+            this.Controls.Add(this.hanging);
             this.Controls.Add(this.remainingAttemptsCount);
             this.Controls.Add(this.remainingAttempts);
             this.Controls.Add(this.failedGuessesList);
@@ -121,6 +132,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HangmanUI_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hanging)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,6 +147,7 @@
         private System.Windows.Forms.Label remainingAttemptsCount;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
+        private System.Windows.Forms.PictureBox hanging;
     }
 }
 

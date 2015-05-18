@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using MVP;
 
 namespace UI
@@ -20,6 +21,7 @@ namespace UI
             hiddenWord.Text = viewModel.HiddenWord;
             remainingAttemptsCount.Text = viewModel.RemainingAttempts.ToString();
             failedGuessesList.Text = viewModel.FailedGuesses;
+            hanging.Image = Image.FromFile("images\\" + viewModel.RemainingAttempts + ".png");
             
             if (viewModel.IsGameOver)
             {
@@ -38,6 +40,7 @@ namespace UI
             hiddenWord.Text = string.Empty;
             remainingAttemptsCount.Text = string.Empty;
             failedGuessesList.Text = string.Empty;
+            hanging.Image = Image.FromFile("images/6.png");
         }
 
         private void EndGame(string message)
