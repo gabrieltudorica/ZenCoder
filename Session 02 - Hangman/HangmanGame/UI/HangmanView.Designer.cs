@@ -45,7 +45,7 @@
             // 
             this.hiddenWord.AutoSize = true;
             this.hiddenWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hiddenWord.Location = new System.Drawing.Point(77, 101);
+            this.hiddenWord.Location = new System.Drawing.Point(41, 101);
             this.hiddenWord.Name = "hiddenWord";
             this.hiddenWord.Size = new System.Drawing.Size(0, 42);
             this.hiddenWord.TabIndex = 0;
