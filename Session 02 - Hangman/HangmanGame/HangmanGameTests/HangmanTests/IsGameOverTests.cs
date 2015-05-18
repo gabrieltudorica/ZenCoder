@@ -49,5 +49,18 @@ namespace HangmanGameTests.HangmanTests
 
             Assert.IsTrue(hangman.IsGameOver());
         }
+
+        [TestMethod]
+        public void GameStops_WhenAllAttemptsHaveBeenExhausted()
+        {
+            var invalidLettersToExhaustAllAttempts = new[] { 'x', 'y', 'z', 'r', 'q', 'w'};
+            hangmanTestsHelper.AttemptGuessesWith(invalidLettersToExhaustAllAttempts);
+            var invalidLettersIgnoredOnceGameIsOver = new[] {'v', 'v', 'b', 'k', 'p'};
+            hangmanTestsHelper.AttemptGuessesWith(invalidLettersIgnoredOnceGameIsOver);
+            
+            Assert.IsTrue(hangman.IsGameOver());
+            CollectionAssert.AreEqual(invalidLettersToExhaustAllAttempts, hangman.GetInvalidChosenLetters());
+            Assert.AreEqual(0, hangman.RemainingAttempts);
+        }
     }
 }

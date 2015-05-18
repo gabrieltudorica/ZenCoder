@@ -25,6 +25,11 @@ namespace HangmanGame
 
         public void AttemptGuess(char character)
         {
+            if (IsGameOver())
+            {
+                return;
+            }
+
             if (!char.IsLetter(character))
             {
                 return;
