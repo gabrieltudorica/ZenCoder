@@ -65,5 +65,14 @@ namespace UI
         {
             NewGame();
         }
+
+        private void howToPlayToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MessageBox.Show(
+                "Try to guess the missing letters to solve the puzzle. The letters are entered from the keyboard",
+                "How to play", 
+                MessageBoxButtons.OK, 
+                MessageBoxIcon.Information);
+        }
     }
 }
