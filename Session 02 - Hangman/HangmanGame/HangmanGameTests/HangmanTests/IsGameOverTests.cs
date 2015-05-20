@@ -55,6 +55,7 @@ namespace HangmanGameTests.HangmanTests
         {
             var invalidLettersToExhaustAllAttempts = new[] { 'x', 'y', 'z', 'r', 'q', 'w'};
             hangmanTestsHelper.AttemptGuessesWith(invalidLettersToExhaustAllAttempts);
+            
             var invalidLettersIgnoredOnceGameIsOver = new[] {'v', 'v', 'b', 'k', 'p'};
             hangmanTestsHelper.AttemptGuessesWith(invalidLettersIgnoredOnceGameIsOver);
             

@@ -40,23 +40,23 @@ namespace HangmanGameTests.HangmanTests
         }
 
         [TestMethod]
-        public void DecrementsWithTheTotalOfFailedGuesses_WhenMultipleLettersAreNotGuessed()
-        {
-            var expectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
-            hangmanTestsHelper.AttemptGuessesWith(expectedInvalidLetters);
-
-            int expectedRemainingAttempts = hangmanTestsHelper.GetMaximumAttempts() - expectedInvalidLetters.Length;
-
-            Assert.AreEqual(expectedRemainingAttempts, hangman.RemainingAttempts);
-        }
-
-        [TestMethod]
-        public void DecrementByOneOnce_WhenSameLetterNotGuessedMultipleTimes()
+        public void DecrementByOneOnce_WhenGuessIsAttemptedWithSameLetterNotInSolutionMultipleTimes()
         {
             hangman.AttemptGuess('x');
             int expectedRemainingAttempts = hangman.RemainingAttempts;
 
             hangmanTestsHelper.AttemptMultipleGuessesWithSingleLetter('x', 10);
+
+            Assert.AreEqual(expectedRemainingAttempts, hangman.RemainingAttempts);
+        }
+
+        [TestMethod]
+        public void DecrementsByOne_ForeachFailedGuess()
+        {
+            var expectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
+            hangmanTestsHelper.AttemptGuessesWith(expectedInvalidLetters);
+
+            int expectedRemainingAttempts = hangmanTestsHelper.GetMaximumAttempts() - expectedInvalidLetters.Length;
 
             Assert.AreEqual(expectedRemainingAttempts, hangman.RemainingAttempts);
         }

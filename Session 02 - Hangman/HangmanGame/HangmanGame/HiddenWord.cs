@@ -29,7 +29,7 @@ namespace HangmanGame
 
         public bool IsSolved()
         {
-            return !partialSolution.Contains('_');
+            return !partialSolution.Contains(Placeholder);
         }
 
         public void AddLetterToSolution(char letter)
@@ -48,19 +48,19 @@ namespace HangmanGame
             AddLetterToSolution(solution[lastLetterIndex]);            
         }
 
-        private void RevealAllLettersWith(char guessedLetter)
+        private void RevealAllLettersWith(char letter)
         {
             for (int letterIndex = 0; letterIndex < solution.Length; letterIndex++)
             {
-                RevealLetter(letterIndex, guessedLetter);
+                RevealLetter(letterIndex, letter);
             }
         }
 
-        private void RevealLetter(int letterIndex, char guessedLetter)
+        private void RevealLetter(int letterIndex, char letter)
         {
-            if (AreEqual(solution[letterIndex], guessedLetter))
+            if (AreEqual(solution[letterIndex], letter))
             {
-                partialSolution[letterIndex] = char.ToUpper(guessedLetter);
+                partialSolution[letterIndex] = char.ToUpper(letter);
             }
         }
 
