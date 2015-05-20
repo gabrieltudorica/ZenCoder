@@ -25,16 +25,11 @@ namespace HangmanGame
 
         public void AttemptGuess(char character)
         {
-            if (IsGameOver())
+            if (IsGameOver() || !IsLetter(character))
             {
                 return;
             }
-
-            if (!char.IsLetter(character))
-            {
-                return;
-            }
-
+            
             if (word.SolutionContainsLetter(character))
             {
                 word.AddLetterToSolution(character);
@@ -52,6 +47,11 @@ namespace HangmanGame
         public bool IsGameOver()
         {
             return RemainingAttempts==0 || IsSolutionFound();
+        }
+
+        public bool IsLetter(char character)
+        {
+            return char.IsLetter(character);
         }
 
         public bool IsSolutionFound()

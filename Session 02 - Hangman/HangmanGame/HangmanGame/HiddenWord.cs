@@ -12,9 +12,9 @@ namespace HangmanGame
         public HiddenWord(string word)
         {
             solution = word.ToUpper();
-            partialSolution = new char[word.Length];
-            
-            InitializePartialSolution();        
+            partialSolution = Enumerable.Repeat(Placeholder, word.Length).ToArray();
+
+            RevealFirstAndLastLetters();      
         }        
 
         public string GetPartialSolution()
@@ -37,20 +37,6 @@ namespace HangmanGame
             if (SolutionContainsLetter(letter))
             {
                 RevealAllLettersWith(letter);
-            }
-        }
-
-        private void InitializePartialSolution()
-        {            
-            AddPlaceholders();   
-            RevealFirstAndLastLetters();
-        }
-
-        private void AddPlaceholders()
-        {
-            for (int i = 0; i < partialSolution.Length; i++)
-            {
-                partialSolution[i] = Placeholder;
             }
         }
 
