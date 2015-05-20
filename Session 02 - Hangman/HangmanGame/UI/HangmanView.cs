@@ -16,16 +16,16 @@ namespace UI
             NewGame();
         }
 
-        public void Update(HangmanViewModel viewModel)
+        public void Update(HangmanModel model)
         {
-            hiddenWord.Text = viewModel.HiddenWord;
-            remainingAttemptsCount.Text = viewModel.RemainingAttempts.ToString();
-            failedGuessesList.Text = viewModel.FailedGuesses;
-            hanging.Image = Image.FromFile("images\\" + viewModel.RemainingAttempts + ".png");
+            hiddenWord.Text = model.HiddenWord;
+            remainingAttemptsCount.Text = model.RemainingAttempts.ToString();
+            failedGuessesList.Text = model.FailedGuesses;
+            hanging.Image = Image.FromFile("images\\" + model.RemainingAttempts + ".png");
             
-            if (viewModel.IsGameOver)
+            if (model.IsGameOver)
             {
-                EndGame(viewModel.EndGameMessage);
+                EndGame(model.EndGameMessage);
             }
         }        
 

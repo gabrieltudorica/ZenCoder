@@ -7,7 +7,7 @@ namespace HangmanGame
         private const int MaxAttempts = 6;
         
         private readonly HiddenWord word;
-        private readonly List<char> invalidChosenLetters = new List<char>(); 
+        private readonly List<char> failedGuesses = new List<char>(); 
 
         public int RemainingAttempts { get; private set; }
 
@@ -44,9 +44,9 @@ namespace HangmanGame
             PenalizePlayerFor(character);
         }
 
-        public List<char> GetInvalidChosenLetters()
+        public List<char> GetFailedGuesses()
         {
-            return invalidChosenLetters;
+            return failedGuesses;
         }
 
         public bool IsGameOver()
@@ -61,10 +61,10 @@ namespace HangmanGame
 
         private void PenalizePlayerFor(char character)
         {
-            if (!invalidChosenLetters.Contains(character))
+            if (!failedGuesses.Contains(character))
             {
                 RemainingAttempts--;
-                invalidChosenLetters.Add(character);
+                failedGuesses.Add(character);
             }
         }
     }

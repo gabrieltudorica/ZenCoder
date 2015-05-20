@@ -7,31 +7,31 @@ namespace HangmanGameTests
     public class HiddenWordTests
     {
         [TestMethod]
-        public void FirstAndLastLettersNotContainedInTheWord_GetPartial_RevealsFirstAndLastLetters()
+        public void FirstAndLastLettersNotContainedInTheWord_GetPartialSolution_RevealsFirstAndLastLetters()
         {
             Assert.AreEqual("S______D", GetInitialPuzzleFor("someWord"));
         }
 
         [TestMethod]
-        public void FirstLetterIsDuplicated_GetPartial_RevealsTheDuplicatedFirstLetter()
+        public void FirstLetterIsDuplicated_GetPartialSolution_RevealsTheDuplicatedFirstLetter()
         {
             Assert.AreEqual("B__B____N", GetInitialPuzzleFor("bomberman"));
         }
 
         [TestMethod]
-        public void LastLetterIsDuplicated_GetPartial_RevelasTheDuplicatedLastLetter()
+        public void LastLetterIsDuplicated_GetPartialSolution_RevelasTheDuplicatedLastLetter()
         {
             Assert.AreEqual("J___NN", GetInitialPuzzleFor("johann"));
         }
 
         [TestMethod]
-        public void BothFirstAndLastLettersAreDuplicated_GetPartial_RevealsAllDuplicatedLetters()
+        public void BothFirstAndLastLettersAreDuplicated_GetPartialSolution_RevealsAllDuplicatedLetters()
         {
             Assert.AreEqual("PE__PE____E", GetInitialPuzzleFor("perspective"));
         }
 
         [TestMethod]
-        public void FirstAndLastLettersAreTheSame_GetPartial_RevealsDuplicatedLetters()
+        public void FirstAndLastLettersAreTheSame_GetPartialSolution_RevealsDuplicatedLetters()
         {
             Assert.AreEqual("S____S_S", GetInitialPuzzleFor("synopsis"));
         }

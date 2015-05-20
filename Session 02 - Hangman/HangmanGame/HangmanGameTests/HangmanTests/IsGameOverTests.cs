@@ -59,7 +59,7 @@ namespace HangmanGameTests.HangmanTests
             hangmanTestsHelper.AttemptGuessesWith(invalidLettersIgnoredOnceGameIsOver);
             
             Assert.IsTrue(hangman.IsGameOver());
-            CollectionAssert.AreEqual(invalidLettersToExhaustAllAttempts, hangman.GetInvalidChosenLetters());
+            CollectionAssert.AreEqual(invalidLettersToExhaustAllAttempts, hangman.GetFailedGuesses());
             Assert.AreEqual(0, hangman.RemainingAttempts);
         }
     }

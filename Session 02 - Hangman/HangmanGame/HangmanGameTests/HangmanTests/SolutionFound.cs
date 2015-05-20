@@ -41,7 +41,7 @@ namespace HangmanGameTests.HangmanTests
             Assert.IsTrue(hangman.IsGameOver());
             Assert.IsTrue(hangman.IsSolutionFound());
             Assert.AreEqual(6, hangman.RemainingAttempts);
-            Assert.AreEqual(0, hangman.GetInvalidChosenLetters().Count);
+            Assert.AreEqual(0, hangman.GetFailedGuesses().Count);
         }
     }
 }

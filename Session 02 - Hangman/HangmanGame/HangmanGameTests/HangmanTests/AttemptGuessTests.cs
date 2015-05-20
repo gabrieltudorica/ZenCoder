@@ -24,7 +24,7 @@ namespace HangmanGameTests.HangmanTests
             Assert.AreEqual(hangmanTestsHelper.GetMaximumAttempts(), hangman.RemainingAttempts);
             Assert.AreEqual("H_N___N", hangman.GetPuzzle());
             Assert.IsFalse(hangman.IsGameOver());
-            Assert.AreEqual(0, hangman.GetInvalidChosenLetters().Count);
+            Assert.AreEqual(0, hangman.GetFailedGuesses().Count);
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace HangmanGameTests.HangmanTests
             Assert.AreEqual(expectedRemainingAttempts, hangman.RemainingAttempts);
             Assert.AreEqual("H_N___N", hangman.GetPuzzle());
             Assert.IsFalse(hangman.IsGameOver());
-            Assert.AreEqual(1, hangman.GetInvalidChosenLetters().Count);
+            Assert.AreEqual(1, hangman.GetFailedGuesses().Count);
         }
     }
 }

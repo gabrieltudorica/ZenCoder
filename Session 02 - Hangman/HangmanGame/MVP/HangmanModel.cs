@@ -1,6 +1,6 @@
 ﻿namespace MVP
 {
-    public class HangmanViewModel
+    public class HangmanModel
     {
         public string HiddenWord { get; set; }
         public int RemainingAttempts { get; set; }
