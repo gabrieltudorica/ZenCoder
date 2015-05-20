@@ -23,19 +23,19 @@ namespace HangmanGameTests.HangmanTests
             const char invalidLetter = 'x';
             hangman.AttemptGuess(invalidLetter);
 
-            List<char> invalidChosenLetters = hangman.GetFailedGuesses();
+            List<char> failedGuesses = hangman.GetFailedGuesses();
 
-            Assert.AreEqual(1, invalidChosenLetters.Count);
-            Assert.AreEqual(invalidLetter, invalidChosenLetters[0]);
+            Assert.AreEqual(1, failedGuesses.Count);
+            Assert.AreEqual(invalidLetter, failedGuesses[0]);
         }
 
         [TestMethod]
         public void ReturnsFailedGuesses_WhenMultipleLettersAreNotGuessed()
         {
-            var explectedInvalidLetters = new[] { 'z', 'x', 'r', 'y' };
-            hangmanTestsHelper.AttemptGuessesWith(explectedInvalidLetters);
+            var expectedFailedGuesses = new[] { 'z', 'x', 'r', 'y' };
+            hangmanTestsHelper.AttemptGuessesWith(expectedFailedGuesses);
 
-            CollectionAssert.AreEqual(explectedInvalidLetters, hangman.GetFailedGuesses());
+            CollectionAssert.AreEqual(expectedFailedGuesses, hangman.GetFailedGuesses());
         }
 
         [TestMethod]
@@ -44,9 +44,9 @@ namespace HangmanGameTests.HangmanTests
             const char invalidLetter = 'g';
             hangman.AttemptGuess(invalidLetter);
 
-            List<char> invalidChosenLetters = hangman.GetFailedGuesses();
+            List<char> failedGuesses = hangman.GetFailedGuesses();
 
-            Assert.AreEqual(0, invalidChosenLetters.Count);
+            Assert.AreEqual(0, failedGuesses.Count);
         }
 
         [TestMethod]
@@ -54,10 +54,10 @@ namespace HangmanGameTests.HangmanTests
         {
             hangmanTestsHelper.AttemptMultipleGuessesWithSingleLetter('x', 10);
 
-            List<char> invalidChosenLetters = hangman.GetFailedGuesses();
+            List<char> failedGuesses = hangman.GetFailedGuesses();
 
-            Assert.AreEqual(1, invalidChosenLetters.Count);
-            Assert.AreEqual('x', invalidChosenLetters[0]);
+            Assert.AreEqual(1, failedGuesses.Count);
+            Assert.AreEqual('x', failedGuesses[0]);
         }
     }
 }
