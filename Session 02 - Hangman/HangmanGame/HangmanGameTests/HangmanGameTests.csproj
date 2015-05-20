@@ -52,11 +52,11 @@
   <ItemGroup>
     <Compile Include="HangmanTests\AttemptGuessTests.cs" />
     <Compile Include="HangmanTests\GetFailedGuessesTests.cs" />
-    <Compile Include="HangmanTests\GetPuzzle.cs" />
+    <Compile Include="HangmanTests\GetPuzzleTests.cs" />
     <Compile Include="HangmanTests\HangmanTestsHelper.cs" />
     <Compile Include="HangmanTests\IsGameOverTests.cs" />
     <Compile Include="HangmanTests\RemainingAttemptsTests.cs" />
-    <Compile Include="HangmanTests\SolutionFound.cs" />
+    <Compile Include="HangmanTests\SolutionFoundTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HiddenWordTests.cs" />
   </ItemGroup>
