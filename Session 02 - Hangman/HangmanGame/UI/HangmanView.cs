@@ -7,6 +7,7 @@ namespace UI
     public partial class HangmanView : Form, IView
     {
         private readonly Presenter presenter;
+        private const string ImagesFolder = "images\\";
 
         public HangmanView()
         {
@@ -21,7 +22,7 @@ namespace UI
             hiddenWord.Text = model.HiddenWord;
             remainingAttemptsCount.Text = model.RemainingAttempts.ToString();
             failedGuessesList.Text = model.FailedGuesses;
-            hanging.Image = Image.FromFile("images\\" + model.RemainingAttempts + ".png");
+            hanging.Image = Image.FromFile(ImagesFolder + model.RemainingAttempts + ".png");
             
             if (model.IsGameOver)
             {
@@ -40,7 +41,7 @@ namespace UI
             hiddenWord.Text = string.Empty;
             remainingAttemptsCount.Text = string.Empty;
             failedGuessesList.Text = string.Empty;
-            hanging.Image = Image.FromFile("images/6.png");
+            hanging.Image = Image.FromFile(ImagesFolder + "6.png");
         }
 
         private void EndGame(string message)
