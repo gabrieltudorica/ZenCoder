@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace HangmanGame
 {
     public class WordGenerator
     {
-        readonly List<string> words = new List<string>
+        readonly string[] words =  
         {
             "hangman",
             "iQuest",
@@ -20,7 +19,7 @@ namespace HangmanGame
         public string GetRandom()
         {
             var random = new Random();
-            int randomWord = random.Next(0, words.Count);
+            int randomWord = random.Next(0, words.Length);
 
             return words[randomWord];
         }
