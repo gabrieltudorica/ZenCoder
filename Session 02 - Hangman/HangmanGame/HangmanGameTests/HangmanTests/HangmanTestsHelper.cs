@@ -6,10 +6,12 @@ namespace HangmanGameTests.HangmanTests
     public class HangmanTestsHelper
     {
         private readonly Hangman hangman;
+        private readonly int maximumAttempts;
 
         public HangmanTestsHelper()
         {
             hangman = new Hangman("hangman");
+            maximumAttempts = hangman.RemainingAttempts;
         }
 
         public Hangman GetInstance()
@@ -19,7 +21,7 @@ namespace HangmanGameTests.HangmanTests
 
         public int GetMaximumAttempts()
         {
-            return 6;
+            return maximumAttempts;
         }
 
         public void AttemptGuessesWith(IEnumerable<char> letters)
