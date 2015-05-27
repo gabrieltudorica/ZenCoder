@@ -39,7 +39,7 @@ namespace HangmanGameTests
         private static string GetInitialPuzzleFor(string solution)
         {
             var word = new HiddenWord(solution);
-            return word.GetPartialSolution();
+            return word.GetPartial();
         }
     }
 }

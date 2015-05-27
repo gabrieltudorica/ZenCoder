@@ -20,7 +20,7 @@ namespace HangmanGame
 
         public string GetPuzzle()
         {
-            return word.GetPartialSolution();
+            return word.GetPartial();
         }
 
         public void AttemptGuess(char character)
@@ -30,9 +30,9 @@ namespace HangmanGame
                 return;
             }
             
-            if (word.SolutionContainsLetter(character))
+            if (word.ContainsLetter(character))
             {
-                word.AddLetterToSolution(character);
+                word.RevealLetter(character);
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace HangmanGame
 
         public bool IsSolutionFound()
         {
-            return word.IsSolved();
+            return word.IsFound();
         }
 
         private void PenalizePlayerFor(char character)

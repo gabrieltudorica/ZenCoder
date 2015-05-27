@@ -5,36 +5,36 @@ namespace HangmanGame
 {
     public class HiddenWord
     {
-        private readonly string solution;
-        private readonly char[] partialSolution;
+        private readonly string word;
+        private readonly char[] partialWord;
         private const char Placeholder = '_';
 
         public HiddenWord(string word)
         {
-            solution = word;
-            partialSolution = Enumerable.Repeat(Placeholder, word.Length).ToArray();
+            this.word = word;
+            partialWord = Enumerable.Repeat(Placeholder, word.Length).ToArray();
 
             RevealFirstAndLastLetters();      
         }        
 
-        public string GetPartialSolution()
+        public string GetPartial()
         {
-            return new string(partialSolution);
+            return new string(partialWord);
         }
 
-        public bool SolutionContainsLetter(char letter)
+        public bool ContainsLetter(char letter)
         {
-            return solution.IndexOf(letter.ToString(), StringComparison.InvariantCultureIgnoreCase) != -1;
+            return word.IndexOf(letter.ToString(), StringComparison.InvariantCultureIgnoreCase) != -1;
         }
 
-        public bool IsSolved()
+        public bool IsFound()
         {
-            return !partialSolution.Contains(Placeholder);
+            return !partialWord.Contains(Placeholder);
         }
 
-        public void AddLetterToSolution(char letter)
+        public void RevealLetter(char letter)
         {
-            if (SolutionContainsLetter(letter))
+            if (ContainsLetter(letter))
             {
                 RevealAllLettersWith(letter);
             }
@@ -42,15 +42,15 @@ namespace HangmanGame
 
         private void RevealFirstAndLastLetters()
         {
-            AddLetterToSolution(solution[0]);
+            RevealLetter(word[0]);
 
-            int lastLetterIndex = solution.Length - 1;
-            AddLetterToSolution(solution[lastLetterIndex]);            
+            int lastLetterIndex = word.Length - 1;
+            RevealLetter(word[lastLetterIndex]);            
         }
 
         private void RevealAllLettersWith(char letter)
         {
-            for (int letterIndex = 0; letterIndex < solution.Length; letterIndex++)
+            for (int letterIndex = 0; letterIndex < word.Length; letterIndex++)
             {
                 RevealLetter(letterIndex, letter);
             }
@@ -58,9 +58,9 @@ namespace HangmanGame
 
         private void RevealLetter(int letterIndex, char letter)
         {
-            if (AreEqual(solution[letterIndex], letter))
+            if (AreEqual(word[letterIndex], letter))
             {
-                partialSolution[letterIndex] = char.ToUpper(letter);
+                partialWord[letterIndex] = char.ToUpper(letter);
             }
         }
 
