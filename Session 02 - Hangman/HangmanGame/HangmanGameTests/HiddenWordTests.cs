@@ -36,6 +36,15 @@ namespace HangmanGameTests
             Assert.AreEqual("S____S_S", GetInitialPuzzleFor("synopsis"));
         }
 
+        [TestMethod]
+        public void Reveal_ReturnsHiddenWord()
+        {
+            const string expectedSolution = "hangman";
+            var word = new HiddenWord(expectedSolution);
+
+            Assert.AreEqual(expectedSolution, word.Reveal());
+        }
+
         private static string GetInitialPuzzleFor(string solution)
         {
             var word = new HiddenWord(solution);

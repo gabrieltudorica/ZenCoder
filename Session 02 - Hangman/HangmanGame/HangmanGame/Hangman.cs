@@ -54,6 +54,11 @@ namespace HangmanGame
             return hiddenWord.IsFound();
         }
 
+        public string GetSolution()
+        {
+            return hiddenWord.Reveal();
+        }
+
         private void PenalizePlayerFor(char character)
         {
             if (!failedGuesses.Contains(character))

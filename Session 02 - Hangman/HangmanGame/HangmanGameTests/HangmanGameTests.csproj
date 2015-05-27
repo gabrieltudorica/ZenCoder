@@ -53,6 +53,7 @@
     <Compile Include="HangmanTests\AttemptGuessTests.cs" />
     <Compile Include="HangmanTests\GetFailedGuessesTests.cs" />
     <Compile Include="HangmanTests\GetPuzzleTests.cs" />
+    <Compile Include="HangmanTests\GetSolutionTests.cs" />
     <Compile Include="HangmanTests\HangmanTestsHelper.cs" />
     <Compile Include="HangmanTests\IsGameOverTests.cs" />
     <Compile Include="HangmanTests\RemainingAttemptsTests.cs" />

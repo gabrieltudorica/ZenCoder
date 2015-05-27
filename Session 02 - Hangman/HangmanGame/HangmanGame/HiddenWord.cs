@@ -40,6 +40,11 @@ namespace HangmanGame
             }
         }
 
+        public string Reveal()
+        {
+            return word;
+        }
+
         private void RevealFirstAndLastLetters()
         {
             RevealLetter(word[0]);

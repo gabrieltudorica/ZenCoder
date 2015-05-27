@@ -75,7 +75,9 @@ namespace MVP
                 return "Congratulations! You found the solution!";               
             }
 
-            return "Looks like you didn't manage to guess the word... Too bad!";
+            return string.Format("Looks like you didn't manage to guess the word... Too bad! " +
+                                 "The word you were looking for was {0}!",
+                                  hangman.GetSolution().ToUpper());
         }
     }
 }
