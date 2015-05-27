@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HangmanGameTests.HangmanTests
 {
     [TestClass]
-    public class SolutionFoundTests
+    public class IsSolutionFoundTests
     {
         private HangmanTestsHelper hangmanTestsHelper;
         private Hangman hangman;

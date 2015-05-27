@@ -57,7 +57,7 @@
     <Compile Include="HangmanTests\HangmanTestsHelper.cs" />
     <Compile Include="HangmanTests\IsGameOverTests.cs" />
     <Compile Include="HangmanTests\RemainingAttemptsTests.cs" />
-    <Compile Include="HangmanTests\SolutionFoundTests.cs" />
+    <Compile Include="HangmanTests\IsSolutionFoundTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HiddenWordTests.cs" />
   </ItemGroup>
