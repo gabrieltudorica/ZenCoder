@@ -6,21 +6,21 @@ namespace HangmanGame
     {
         private const int MaxAttempts = 6;
         
-        private readonly HiddenWord word;
+        private readonly HiddenWord hiddenWord;
         private readonly List<char> failedGuesses = new List<char>(); 
 
         public int RemainingAttempts { get; private set; }
 
         public Hangman(string word)
         {
-            this.word = new HiddenWord(word);
+            hiddenWord = new HiddenWord(word);
 
             RemainingAttempts = MaxAttempts;            
         }        
 
         public string GetPuzzle()
         {
-            return word.GetPartial();
+            return hiddenWord.GetPartial();
         }
 
         public void AttemptGuess(char character)
@@ -30,9 +30,9 @@ namespace HangmanGame
                 return;
             }
             
-            if (word.ContainsLetter(character))
+            if (hiddenWord.ContainsLetter(character))
             {
-                word.RevealLetter(character);
+                hiddenWord.RevealLetter(character);
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace HangmanGame
 
         public bool IsSolutionFound()
         {
-            return word.IsFound();
+            return hiddenWord.IsFound();
         }
 
         private void PenalizePlayerFor(char character)
