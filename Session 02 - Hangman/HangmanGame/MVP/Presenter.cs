@@ -14,9 +14,8 @@ namespace MVP
 
         public void NewGame()
         {
-            var wordGenerator = new WordGenerator();
-            var hiddenWord = new HiddenWord(wordGenerator.GetRandom());
-            hangman = new Hangman(hiddenWord);
+            var wordGenerator = new WordGenerator();            
+            hangman = new Hangman(wordGenerator.GetRandom());
             
             UpdateView();
         }

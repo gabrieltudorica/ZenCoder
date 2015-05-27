@@ -11,9 +11,9 @@ namespace HangmanGame
 
         public int RemainingAttempts { get; private set; }
 
-        public Hangman(HiddenWord word)
+        public Hangman(string word)
         {
-            this.word = word;
+            this.word = new HiddenWord(word);
 
             RemainingAttempts = MaxAttempts;            
         }        
@@ -49,14 +49,14 @@ namespace HangmanGame
             return RemainingAttempts==0 || IsSolutionFound();
         }
 
-        public bool IsLetter(char character)
-        {
-            return char.IsLetter(character);
-        }
-
         public bool IsSolutionFound()
         {
             return word.IsSolved();
+        }
+
+        private bool IsLetter(char character)
+        {
+            return char.IsLetter(character);
         }
 
         private void PenalizePlayerFor(char character)
