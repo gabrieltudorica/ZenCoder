@@ -11,7 +11,7 @@ namespace HangmanGame
 
         public HiddenWord(string word)
         {
-            solution = word.ToUpper();
+            solution = word;
             partialSolution = Enumerable.Repeat(Placeholder, word.Length).ToArray();
 
             RevealFirstAndLastLetters();      
