@@ -34,11 +34,21 @@ namespace PokerTests
         {           
             var pokerHand = new PokerHandEvaluator(Dealer.GetCardsForHighCardRankCategory());
 
-            List<Card> keyCards = pokerHand.GetKeyCardInDescendingValue();
+            List<Rank> keyCards = pokerHand.GetKeyCardsInDescendingValue();
 
             Assert.AreEqual(1, keyCards.Count);
-            Assert.AreEqual(Rank.Ace, keyCards[0].Rank);
-            Assert.AreEqual(Suit.Diamnods, keyCards[0].Suit);
+            Assert.AreEqual(Rank.Ace, keyCards[0]);
+        }
+
+        [TestMethod]
+        public void GetKeyCardsInDescendingValue_ReturnsPairCard_WhenRankCategoryIsOnePair()
+        {
+            var pokerHand = new PokerHandEvaluator(Dealer.GetCardsForOnePairRankCategory());
+
+            List<Rank> keyCards = pokerHand.GetKeyCardsInDescendingValue();
+
+            Assert.AreEqual(1, keyCards.Count);
+            Assert.AreEqual(Rank.King, keyCards[0]);
         }
 
         [TestMethod]

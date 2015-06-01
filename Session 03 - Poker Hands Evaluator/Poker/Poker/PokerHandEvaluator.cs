@@ -10,7 +10,8 @@ namespace Poker
         private const int RequiredNumberOfCards = 5;
 
         private readonly List<Card> cards;
-        private readonly PairFinder pairFinder;
+        private PairFinder pairFinder;
+        private RankCategory rankCategory;
 
         public PokerHandEvaluator(List<Card> cards)
         {            
@@ -20,22 +21,35 @@ namespace Poker
             }
 
             this.cards = cards;
-            pairFinder = new PairFinder(cards);
+            FindRankCategory();
         }
          
         public RankCategory GetRankCategory()
         {
-            if (pairFinder.GetPairs().Count > 0)
-            {
-                return RankCategory.OnePair;
-            }
-
-            return RankCategory.HighCard;
+            return rankCategory;
         }
 
-        public List<Card> GetKeyCardInDescendingValue()
+        public List<Rank> GetKeyCardsInDescendingValue()
         {
-            return new List<Card> {cards.OrderByDescending(x => x.Rank).First()};
-        }        
+            if (rankCategory == RankCategory.OnePair)
+            {
+                return new List<Rank>(pairFinder.GetPairs().Keys);
+            }
+
+            return new List<Rank> {cards.OrderByDescending(x => x.Rank).First().Rank};
+        }
+
+        private void FindRankCategory()
+        {
+            pairFinder = new PairFinder(cards);
+
+            if (pairFinder.GetPairs().Count > 0)
+            {
+                rankCategory = RankCategory.OnePair;
+                return;
+            }
+
+            rankCategory = RankCategory.HighCard;
+        }
     }
 }
