@@ -1,6 +1,6 @@
 ﻿namespace Poker
 {
-    public enum Rank
+    public enum RankCategory
     {
         HighCard
     }

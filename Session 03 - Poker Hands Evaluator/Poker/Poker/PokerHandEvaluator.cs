@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Poker.Model;
 
 namespace Poker
 {
@@ -6,21 +9,26 @@ namespace Poker
     {
         private const int RequiredNumberOfCards = 5;
 
-        private readonly object[] cards;
+        private readonly List<Card> cards;
 
-        public PokerHandEvaluator(object[] cards)
+        public PokerHandEvaluator(List<Card> cards)
         {
             this.cards = cards;
 
-            if (cards.Length != RequiredNumberOfCards)
+            if (cards.Count != RequiredNumberOfCards)
             {
                 throw new ArgumentException();
             }
         }
          
-        public Rank GetRank()
+        public RankCategory GetRank()
         {           
-            return Rank.HighCard;
+            return RankCategory.HighCard;
+        }
+
+        public List<Card> GetKeyCardInDescendingValue()
+        {
+            return new List<Card> {cards.OrderByDescending(x => x.Rank).First()};
         }
     }
 }
