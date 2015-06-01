@@ -22,9 +22,9 @@ namespace PokerTests
         }
 
         [TestMethod]
-        public void GetRankCategory_ReturnsHighCard_WhenNoBetterRankExists()
+        public void GetRankCategory_ReturnsHighCard()
         {
-            var pokerHand = new PokerHandEvaluator(GetCardsForHighCardRankCategory());
+            var pokerHand = new PokerHandEvaluator(Dealer.GetCardsForHighCardRankCategory());
 
             Assert.AreEqual(RankCategory.HighCard, pokerHand.GetRankCategory());
         }
@@ -32,7 +32,7 @@ namespace PokerTests
         [TestMethod]
         public void GetKeyCardsInDescendingValue_ReturnsHighestCard_WhenRankCategoryIsHighCard()
         {           
-            var pokerHand = new PokerHandEvaluator(GetCardsForHighCardRankCategory());
+            var pokerHand = new PokerHandEvaluator(Dealer.GetCardsForHighCardRankCategory());
 
             List<Card> keyCards = pokerHand.GetKeyCardInDescendingValue();
 
@@ -41,16 +41,14 @@ namespace PokerTests
             Assert.AreEqual(Suit.Diamnods, keyCards[0].Suit);
         }
 
-        private static List<Card> GetCardsForHighCardRankCategory()
+        [TestMethod]
+        public void GetRankCategory_ReturnsOnePair()
         {
-            return new List<Card>
-            {
-                new Card(Rank.Eight, Suit.Hearts),
-                new Card(Rank.Ace, Suit.Diamnods),
-                new Card(Rank.Two, Suit.Spades),
-                new Card(Rank.Seven, Suit.Clubs),
-                new Card(Rank.Four, Suit.Hearts)
-            };
+            var pokerHand = new PokerHandEvaluator(Dealer.GetCardsForOnePairRankCategory());
+
+            Assert.AreEqual(RankCategory.OnePair, pokerHand.GetRankCategory());
         }
+
+        
     }
 }

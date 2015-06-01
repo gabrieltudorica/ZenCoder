@@ -2,6 +2,7 @@
 {
     public enum RankCategory
     {
-        HighCard
+        HighCard,
+        OnePair
     }
 }
