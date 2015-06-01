@@ -43,7 +43,7 @@
     <Compile Include="Evaluators\IEvaluator.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Evaluators\PairEvaluator.cs" />
-    <Compile Include="PokerHandEvaluator.cs" />
+    <Compile Include="PokerHand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Rank.cs" />
     <Compile Include="RankCategory.cs" />

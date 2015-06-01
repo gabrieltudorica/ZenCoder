@@ -8,7 +8,7 @@ namespace Poker.Evaluators
     {
         private readonly List<Card> cards;
 
-        public HighCardEvaluator(List<Card> cards )
+        public HighCardEvaluator(List<Card> cards)
         {
             this.cards = cards;        
         }
