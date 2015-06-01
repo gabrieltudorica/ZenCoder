@@ -10,7 +10,7 @@ namespace PokerTests
     public class HighCardEvaluatorTests
     {
         private readonly HighCardEvaluator highCardEvaluator =
-            new HighCardEvaluator(Dealer.GetCardsForHighCardRankCategory());
+            new HighCardEvaluator(Dealer.GetCardsForStrongHighCardRankCategory());
 
         [TestMethod]
         public void GetRankCategory_ReturnsHighCard()
@@ -23,7 +23,6 @@ namespace PokerTests
         {
             List<Rank> keyCards = highCardEvaluator.GetKeyCards();
 
-            Assert.AreEqual(1, keyCards.Count);
             Assert.AreEqual(Rank.Ace, keyCards[0]);
         }
     }

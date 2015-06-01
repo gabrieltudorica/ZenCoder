@@ -6,7 +6,9 @@ using Poker.Model;
 namespace Poker
 {
     public class PokerHand
-    {                
+    {
+        private const int RequiredNumberOfCards = 5;
+
         private readonly List<Card> cards; 
         private IEvaluator evaluator;             
 
@@ -30,9 +32,7 @@ namespace Poker
 
         private void ValidateNumberOfCards()
         {
-            const int requiredNumberOfCards = 5;
-
-            if (cards.Count != requiredNumberOfCards)
+            if (cards.Count != RequiredNumberOfCards)
             {
                 throw new ArgumentException();
             }
@@ -59,6 +59,31 @@ namespace Poker
                     evaluator = currentEvaluator;
                 }
             }
+        }
+
+        public Strength CompareWith(PokerHand otherHand)
+        {
+            List<Rank> currentHandKeyCards = GetKeyCards();
+            List<Rank> otherHandKeyCards = otherHand.GetKeyCards();
+
+            Strength result = Strength.Equal;
+
+            for (int i = 0; i < RequiredNumberOfCards; i++)
+            {
+                if (currentHandKeyCards[i] > otherHandKeyCards[i])
+                {
+                    result = Strength.Strong;
+                    break;
+                }
+
+                if (currentHandKeyCards[i] < otherHandKeyCards[i])
+                {
+                    result = Strength.Weak;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }

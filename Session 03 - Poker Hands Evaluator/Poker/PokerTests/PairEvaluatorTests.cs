@@ -12,7 +12,7 @@ namespace PokerTests
         [TestMethod]
         public void GetRankCategory_ReturnsNone_WhenNoPairsExist()
         {
-            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForHighCardRankCategory());
+            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForStrongHighCardRankCategory());
             
             Assert.AreEqual(RankCategory.None, pairEvaluator.GetRankCategory());
         }
@@ -20,7 +20,7 @@ namespace PokerTests
         [TestMethod]
         public void GetKeyCards_ReturnsEmptyList_WhenNoPairsExist()
         {
-            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForHighCardRankCategory());
+            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForStrongHighCardRankCategory());
 
             Assert.AreEqual(0, pairEvaluator.GetKeyCards().Count);
         }

@@ -20,7 +20,9 @@ namespace Poker.Evaluators
 
         public List<Rank> GetKeyCards()
         {
-            return new List<Rank> {cards.OrderByDescending(x => x.Rank).First().Rank};
+            var orderedCards = cards.OrderByDescending(x => x.Rank);
+
+            return orderedCards.Select(card => card.Rank).ToList();
         }
     }
 }
