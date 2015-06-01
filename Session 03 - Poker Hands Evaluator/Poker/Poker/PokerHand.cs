@@ -4,6 +4,8 @@ namespace Poker
 {
     public class PokerHand
     {
+        private const int RequiredNumberOfCards = 5;
+
         private readonly object[] cards;
 
         public PokerHand(object[] cards)
@@ -13,7 +15,7 @@ namespace Poker
 
         public void GetRank()
         {
-            if (cards.Length != 5)
+            if (cards.Length != RequiredNumberOfCards)
             {
                 throw new ArgumentException();
             }
