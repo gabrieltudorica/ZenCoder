@@ -13,12 +13,14 @@ namespace Poker
             this.cards = cards;
         }
 
-        public void GetRank()
+        public Rank GetRank()
         {
             if (cards.Length != RequiredNumberOfCards)
             {
                 throw new ArgumentException();
             }
+
+            return Rank.HighCard;
         }
     }
 }

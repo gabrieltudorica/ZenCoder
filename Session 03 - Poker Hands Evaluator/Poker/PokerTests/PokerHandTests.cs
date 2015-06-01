@@ -14,5 +14,13 @@ namespace PokerTests
             var pokerHand = new PokerHand(new object[] {});
             pokerHand.GetRank();
         }
+
+        [TestMethod]
+        public void GetRank_ReturnsHighCard_WhenNoBetterRankExists()
+        {
+            var pokerHand = new PokerHand(new object[] {"", "", "", "", ""});
+
+            Assert.AreEqual(Rank.HighCard, pokerHand.GetRank());
+        }
     }
 }
