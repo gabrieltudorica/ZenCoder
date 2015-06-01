@@ -5,20 +5,19 @@ using Poker;
 namespace PokerTests
 {
     [TestClass]
-    public class PokerHandTests
+    public class PokerHandEvaluatorTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void GetRank_ThrowsException_WhenNumberOfCardsIsDifferentThanFive()
+        public void ThrowsException_WhenNumberOfCardsIsDifferentThanFive()
         {
-            var pokerHand = new PokerHand(new object[] {});
-            pokerHand.GetRank();
+            new PokerHandEvaluator(new object[] {});
         }
 
         [TestMethod]
         public void GetRank_ReturnsHighCard_WhenNoBetterRankExists()
         {
-            var pokerHand = new PokerHand(new object[] {"", "", "", "", ""});
+            var pokerHand = new PokerHandEvaluator(new object[] {"", "", "", "", ""});
 
             Assert.AreEqual(Rank.HighCard, pokerHand.GetRank());
         }
