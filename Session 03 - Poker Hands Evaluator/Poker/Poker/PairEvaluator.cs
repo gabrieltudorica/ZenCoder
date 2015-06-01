@@ -3,20 +3,43 @@ using Poker.Model;
 
 namespace Poker
 {
-    public class PairFinder
+    public class PairEvaluator
     {
         private readonly List<Card> cards;        
         private readonly Dictionary<Rank, int> pairs = new Dictionary<Rank, int>(); 
+        private RankCategory rankCategory = RankCategory.None;
+        private List<Rank> keyCards = new List<Rank>(); 
 
-        public PairFinder(List<Card> cards)
+        public PairEvaluator(List<Card> cards)
         {
             this.cards = cards;
-            FindAllPairs();
+            Initialize();
         }
 
-        public Dictionary<Rank, int> GetPairs()
+        public RankCategory GetRankCategory()
         {
-            return pairs;
+            return rankCategory;
+        }
+
+        public List<Rank> GetKeyCards()
+        {
+            return keyCards;            
+        }
+
+        private void Initialize()
+        {
+            FindRank();
+            FindKeyCards();
+        }
+
+        private void FindRank()
+        {
+            FindAllPairs();
+            
+            if (pairs.Count == 1)
+            {
+                rankCategory = RankCategory.OnePair;
+            }
         }
 
         private void FindAllPairs()
@@ -51,6 +74,11 @@ namespace Poker
             {
                 pairs.Add(potentialPair.Key, 2);
             }
-        }       
+        }
+
+        private void FindKeyCards()
+        {
+            keyCards = new List<Rank>(pairs.Keys);
+        }
     }
 }
