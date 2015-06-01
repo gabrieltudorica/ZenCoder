@@ -21,7 +21,7 @@ namespace Poker
             }
         }
          
-        public RankCategory GetRank()
+        public RankCategory GetRankCategory()
         {           
             return RankCategory.HighCard;
         }

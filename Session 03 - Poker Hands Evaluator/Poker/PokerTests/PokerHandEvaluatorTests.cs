@@ -22,11 +22,11 @@ namespace PokerTests
         }
 
         [TestMethod]
-        public void GetRank_ReturnsHighCard_WhenNoBetterRankExists()
+        public void GetRankCategory_ReturnsHighCard_WhenNoBetterRankExists()
         {
             var pokerHand = new PokerHandEvaluator(GetCardsForHighCardRankCategory());
 
-            Assert.AreEqual(RankCategory.HighCard, pokerHand.GetRank());
+            Assert.AreEqual(RankCategory.HighCard, pokerHand.GetRankCategory());
         }
 
         [TestMethod]
