@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Poker;
+using Poker.Evaluators;
 using Poker.Model;
 
 namespace PokerTests

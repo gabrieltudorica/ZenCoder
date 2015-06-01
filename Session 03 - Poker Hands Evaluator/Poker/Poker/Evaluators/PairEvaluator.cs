@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Poker.Model;
 
-namespace Poker
+namespace Poker.Evaluators
 {
-    public class PairEvaluator
+    public class PairEvaluator : IEvaluator
     {
         private readonly List<Card> cards;        
         private readonly Dictionary<Rank, int> pairs = new Dictionary<Rank, int>(); 

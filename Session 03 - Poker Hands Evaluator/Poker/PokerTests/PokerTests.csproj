@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Dealer.cs" />
+    <Compile Include="HighCardEvaluatorTests.cs" />
     <Compile Include="PairEvaluatorTests.cs" />
     <Compile Include="PokerHandEvaluatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

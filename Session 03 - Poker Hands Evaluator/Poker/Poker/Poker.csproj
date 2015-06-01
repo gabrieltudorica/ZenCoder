@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Evaluators\HighCardEvaluator.cs" />
+    <Compile Include="Evaluators\IEvaluator.cs" />
     <Compile Include="Model\Card.cs" />
-    <Compile Include="PairEvaluator.cs" />
+    <Compile Include="Evaluators\PairEvaluator.cs" />
     <Compile Include="PokerHandEvaluator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Rank.cs" />
