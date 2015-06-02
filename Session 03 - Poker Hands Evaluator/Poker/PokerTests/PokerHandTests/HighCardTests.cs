@@ -12,7 +12,7 @@ namespace PokerTests.PokerHandTests
         private readonly PokerHand[] weakCases = 
         {
             new PokerHand(Dealer.GetCardsForStrongHighCardRankCategory()),
-            new PokerHand(Dealer.GetCardsForOnePairRankCategory())
+            new PokerHand(Dealer.GetCardsForWeakOnePairRankCategory())
         };
         
         [Test]

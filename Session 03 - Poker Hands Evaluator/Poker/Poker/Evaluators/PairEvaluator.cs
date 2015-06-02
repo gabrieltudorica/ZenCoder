@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Poker.Model;
 
 namespace Poker.Evaluators
 {
     public class PairEvaluator : IEvaluator
     {
-        private readonly List<Card> cards;        
-        private readonly Dictionary<Rank, int> pairs = new Dictionary<Rank, int>(); 
+        private readonly List<Card> cards;
+        private readonly Dictionary<Rank, int> pairs = new Dictionary<Rank, int>();
         private RankCategory rankCategory = RankCategory.None;
-        private List<Rank> keyCards = new List<Rank>(); 
+        private List<Rank> keyCards = new List<Rank>();
 
         public PairEvaluator(List<Card> cards)
         {
@@ -23,7 +24,7 @@ namespace Poker.Evaluators
 
         public List<Rank> GetKeyCards()
         {
-            return keyCards;            
+            return keyCards;
         }
 
         private void Initialize()
@@ -35,7 +36,7 @@ namespace Poker.Evaluators
         private void FindRank()
         {
             FindAllPairs();
-            
+
             if (pairs.Count == 1)
             {
                 rankCategory = RankCategory.OnePair;
@@ -66,7 +67,7 @@ namespace Poker.Evaluators
             }
 
             return potentialPairs;
-        }       
+        }
 
         private void AddValidPair(KeyValuePair<Rank, int> potentialPair)
         {
@@ -78,7 +79,21 @@ namespace Poker.Evaluators
 
         private void FindKeyCards()
         {
-            keyCards = new List<Rank>(pairs.Keys);
+            keyCards = GetSingleCardFromEachPair();
+            keyCards.AddRange(GetHighCardsInDescendingOrder());
+        }
+
+        private List<Rank> GetSingleCardFromEachPair()
+        {
+            return pairs.Keys.ToList();
+        }
+
+        private IEnumerable<Rank> GetHighCardsInDescendingOrder()
+        {
+            return cards
+                .OrderByDescending(x=>x.Rank)
+                .Select(x => x.Rank)
+                .Except(pairs.Keys).ToList();
         }
     }
 }

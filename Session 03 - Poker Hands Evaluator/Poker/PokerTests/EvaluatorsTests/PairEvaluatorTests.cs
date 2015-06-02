@@ -18,29 +18,33 @@ namespace PokerTests.EvaluatorsTests
         }
 
         [Test]
-        public void GetKeyCards_ReturnsEmptyList_WhenNoPairsExist()
+        public void GetKeyCards_ReturnsAllCards_WhenNoPairsExist()
         {
             var pairEvaluator = new PairEvaluator(Dealer.GetCardsForStrongHighCardRankCategory());
 
-            Assert.AreEqual(0, pairEvaluator.GetKeyCards().Count);
+            Assert.AreEqual(5, pairEvaluator.GetKeyCards().Count);
         }
 
         [Test]
         public void GetRankCategory_ReturnsOnePair_WhenOnePairExists()
         {
-            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForOnePairRankCategory());
+            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForWeakOnePairRankCategory());
 
             Assert.AreEqual(RankCategory.OnePair, pairEvaluator.GetRankCategory());
         }
 
         [Test]
-        public void GetKeyCards_ReturnsListWithPairCard_WhenOnePairExists()
+        public void GetKeyCards_ReturnsListWithPairCardAndHighCardsInDescendingOrder_WhenOnePairExists()
         {
-            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForOnePairRankCategory());
+            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForWeakOnePairRankCategory());
 
             List<Rank> keyCards = pairEvaluator.GetKeyCards();
-            Assert.AreEqual(1, keyCards.Count);
-            Assert.AreEqual(Rank.King, keyCards[0]);
+            
+            Assert.AreEqual(4, keyCards.Count);
+            Assert.AreEqual(Rank.Two, keyCards[0]);
+            Assert.AreEqual(Rank.Eight, keyCards[1]);
+            Assert.AreEqual(Rank.Seven, keyCards[2]);
+            Assert.AreEqual(Rank.Four, keyCards[3]);
         }
     }
 }
