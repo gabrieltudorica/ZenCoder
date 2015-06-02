@@ -6,9 +6,7 @@ using Poker.Model;
 namespace Poker
 {
     public class PokerHand
-    {
-        private const int RequiredNumberOfCards = 5;
-
+    {       
         private readonly List<Card> cards; 
         private IEvaluator evaluator;             
 
@@ -32,7 +30,9 @@ namespace Poker
 
         private void ValidateNumberOfCards()
         {
-            if (cards.Count != RequiredNumberOfCards)
+            const int requiredNumberOfCards = 5;
+
+            if (cards.Count != requiredNumberOfCards)
             {
                 throw new ArgumentException();
             }
@@ -77,18 +77,18 @@ namespace Poker
            return GetStrengthFromTieRankCategories(otherHand.GetKeyCards());
         }
 
-        private Strength GetStrengthFromTieRankCategories(List<Rank> otherHandKeyCards)
+        private Strength GetStrengthFromTieRankCategories(List<Rank> keyCards)
         {
             List<Rank> currentHandKeyCards = GetKeyCards();
 
             for (int i = 0; i < currentHandKeyCards.Count; i++)
             {
-                if (currentHandKeyCards[i] > otherHandKeyCards[i])
+                if (currentHandKeyCards[i] > keyCards[i])
                 {
                     return Strength.Strong;
                 }
 
-                if (currentHandKeyCards[i] < otherHandKeyCards[i])
+                if (currentHandKeyCards[i] < keyCards[i])
                 {
                     return Strength.Weak;
                 }
