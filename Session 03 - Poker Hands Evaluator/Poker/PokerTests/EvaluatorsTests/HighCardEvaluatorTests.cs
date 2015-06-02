@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Poker;
 using Poker.Evaluators;
 using Poker.Model;
 
-namespace PokerTests
+namespace PokerTests.EvaluatorsTests
 {
-    [TestClass]
+    [TestFixture]
     public class HighCardEvaluatorTests
     {
         private readonly HighCardEvaluator highCardEvaluator =
             new HighCardEvaluator(Dealer.GetCardsForStrongHighCardRankCategory());
 
-        [TestMethod]
+        [Test]
         public void GetRankCategory_ReturnsHighCard()
         {            
             Assert.AreEqual(RankCategory.HighCard, highCardEvaluator.GetRankCategory());
         }
 
-        [TestMethod]
+        [Test]
         public void GetKeyCards_ReturnsHighestCardRank()
         {
             List<Rank> keyCards = highCardEvaluator.GetKeyCards();
