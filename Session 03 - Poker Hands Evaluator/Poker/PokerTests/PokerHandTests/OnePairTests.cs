@@ -6,14 +6,14 @@ namespace PokerTests.PokerHandTests
     [TestFixture]
     public class OnePairTests
     {
-        private readonly PokerHand weakPair = new PokerHand(Dealer.GetCardsForWeakOnePairRankCategory());
-        private readonly PokerHand strongPair = new PokerHand(Dealer.GetCardsForStrongOnePairRankCategory());
+        private readonly PokerHand weakPair = new PokerHand(Dealer.DealForWeakOnePair());
+        private readonly PokerHand strongPair = new PokerHand(Dealer.DealForStrongOnePair());
 
         private readonly PokerHand pairWithWeakHighCards =
-            new PokerHand(Dealer.GetCardsForOnePairRankCategoryWithWeakHighCards());
+            new PokerHand(Dealer.DealForOnePairWithWeakHighCards());
 
         private readonly PokerHand pairWithStrongHighCards =
-            new PokerHand(Dealer.GetCardsForOnePairRankCategoryWithStrongHighCards());
+            new PokerHand(Dealer.DealForOnePairWithStrongHighCards());
 
         [Test]
         public void WeakPair_ComparedWith_StrongPair_ReturnsWeak()

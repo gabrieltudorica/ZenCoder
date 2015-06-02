@@ -5,7 +5,7 @@ namespace PokerTests
 {
     public static class Dealer
     {
-        public static List<Card> GetCardsForStrongHighCardRankCategory()
+        public static List<Card> DealForStrongHighCard()
         {
             return new List<Card>
             {
@@ -17,7 +17,7 @@ namespace PokerTests
             };
         }
 
-        public static List<Card> GetCardsForWeakHighCardRankCategory()
+        public static List<Card> DealForWeakHighCard()
         {
             return new List<Card>
             {
@@ -29,7 +29,7 @@ namespace PokerTests
             };
         }
 
-        public static List<Card> GetCardsForStrongOnePairRankCategory()
+        public static List<Card> DealForStrongOnePair()
         {
             return new List<Card>
             {
@@ -41,7 +41,7 @@ namespace PokerTests
             };
         }
 
-        public static List<Card> GetCardsForWeakOnePairRankCategory()
+        public static List<Card> DealForWeakOnePair()
         {
             return new List<Card>
             {
@@ -53,7 +53,7 @@ namespace PokerTests
             };
         }
 
-        public static List<Card> GetCardsForOnePairRankCategoryWithStrongHighCards()
+        public static List<Card> DealForOnePairWithStrongHighCards()
         {
             return new List<Card>
             {
@@ -65,7 +65,7 @@ namespace PokerTests
             };
         }
 
-        public static List<Card> GetCardsForOnePairRankCategoryWithWeakHighCards()
+        public static List<Card> DealForOnePairWithWeakHighCards()
         {
             return new List<Card>
             {                

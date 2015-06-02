@@ -6,13 +6,13 @@ namespace PokerTests.PokerHandTests
     [TestFixture]
     public class HighCardTests
     {
-        private readonly PokerHand strongHighCard = new PokerHand(Dealer.GetCardsForStrongHighCardRankCategory());
-        private readonly PokerHand weakHighCard = new PokerHand(Dealer.GetCardsForWeakHighCardRankCategory());
+        private readonly PokerHand strongHighCard = new PokerHand(Dealer.DealForStrongHighCard());
+        private readonly PokerHand weakHighCard = new PokerHand(Dealer.DealForWeakHighCard());
 
         private readonly PokerHand[] weakCases = 
         {
-            new PokerHand(Dealer.GetCardsForStrongHighCardRankCategory()),
-            new PokerHand(Dealer.GetCardsForWeakOnePairRankCategory())
+            new PokerHand(Dealer.DealForStrongHighCard()),
+            new PokerHand(Dealer.DealForWeakOnePair())
         };
         
         [Test]

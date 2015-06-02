@@ -12,7 +12,7 @@ namespace PokerTests.EvaluatorsTests
         [Test]
         public void GetRankCategory_ReturnsNone_WhenNoPairsExist()
         {
-            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForStrongHighCardRankCategory());
+            var pairEvaluator = new PairEvaluator(Dealer.DealForStrongHighCard());
             
             Assert.AreEqual(RankCategory.None, pairEvaluator.GetRankCategory());
         }
@@ -20,7 +20,7 @@ namespace PokerTests.EvaluatorsTests
         [Test]
         public void GetKeyCards_ReturnsAllCards_WhenNoPairsExist()
         {
-            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForStrongHighCardRankCategory());
+            var pairEvaluator = new PairEvaluator(Dealer.DealForStrongHighCard());
 
             Assert.AreEqual(5, pairEvaluator.GetKeyCards().Count);
         }
@@ -28,7 +28,7 @@ namespace PokerTests.EvaluatorsTests
         [Test]
         public void GetRankCategory_ReturnsOnePair_WhenOnePairExists()
         {
-            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForWeakOnePairRankCategory());
+            var pairEvaluator = new PairEvaluator(Dealer.DealForWeakOnePair());
 
             Assert.AreEqual(RankCategory.OnePair, pairEvaluator.GetRankCategory());
         }
@@ -36,7 +36,7 @@ namespace PokerTests.EvaluatorsTests
         [Test]
         public void GetKeyCards_ReturnsListWithPairCardAndHighCardsInDescendingOrder_WhenOnePairExists()
         {
-            var pairEvaluator = new PairEvaluator(Dealer.GetCardsForWeakOnePairRankCategory());
+            var pairEvaluator = new PairEvaluator(Dealer.DealForWeakOnePair());
 
             List<Rank> keyCards = pairEvaluator.GetKeyCards();
             
