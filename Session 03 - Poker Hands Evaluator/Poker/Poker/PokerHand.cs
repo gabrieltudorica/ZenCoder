@@ -57,33 +57,44 @@ namespace Poker
                 if (currentEvaluator.GetRankCategory() != RankCategory.None)
                 {
                     evaluator = currentEvaluator;
+                    break;
                 }
             }
         }
 
         public Strength CompareWith(PokerHand otherHand)
         {
+            if (GetRankCategory() > otherHand.GetRankCategory())
+            {
+                return Strength.Strong;
+            }
+
+            if (GetRankCategory() < otherHand.GetRankCategory())
+            {
+                return Strength.Weak;
+            }
+
+           return GetStrengthFromTieRankCategories(otherHand.GetKeyCards());
+        }
+
+        private Strength GetStrengthFromTieRankCategories(List<Rank> otherHandKeyCards)
+        {
             List<Rank> currentHandKeyCards = GetKeyCards();
-            List<Rank> otherHandKeyCards = otherHand.GetKeyCards();
 
-            Strength result = Strength.Equal;
-
-            for (int i = 0; i < RequiredNumberOfCards; i++)
+            for (int i = 0; i < currentHandKeyCards.Count; i++)
             {
                 if (currentHandKeyCards[i] > otherHandKeyCards[i])
                 {
-                    result = Strength.Strong;
-                    break;
+                    return Strength.Strong;
                 }
 
                 if (currentHandKeyCards[i] < otherHandKeyCards[i])
                 {
-                    result = Strength.Weak;
-                    break;
+                    return Strength.Weak;
                 }
             }
 
-            return result;
+            return Strength.Equal;
         }
     }
 }

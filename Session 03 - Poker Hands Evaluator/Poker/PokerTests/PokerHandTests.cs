@@ -63,5 +63,23 @@ namespace PokerTests
 
             Assert.AreEqual(Strength.Equal, firstHand.CompareWith(secondHand));
         }
+
+        [TestMethod]
+        public void CompareWith_ReturnsWeak_WhenHandIsHighCardAndOtherHandIsOnePair()
+        {
+            var weakHand = new PokerHand(Dealer.GetCardsForWeakHighCardRankCategory());
+            var strongHand = new PokerHand(Dealer.GetCardsForOnePairRankCategory());
+
+            Assert.AreEqual(Strength.Weak, weakHand.CompareWith(strongHand));
+        }
+
+        [TestMethod]
+        public void CompareWith_ReturnsStrong_WhenHandIsOnePairAndOtherHandIsHighCard()
+        {
+            var weakHand = new PokerHand(Dealer.GetCardsForWeakHighCardRankCategory());
+            var strongHand = new PokerHand(Dealer.GetCardsForOnePairRankCategory());
+
+            Assert.AreEqual(Strength.Strong, strongHand.CompareWith(weakHand));
+        }
     }
 }
