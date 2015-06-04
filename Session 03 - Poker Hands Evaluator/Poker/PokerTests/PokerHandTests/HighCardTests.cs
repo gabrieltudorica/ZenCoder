@@ -23,14 +23,15 @@ namespace PokerTests.PokerHandTests
         }
 
         private static readonly Rank[] HighCards = { Rank.Four, Rank.Seven, Rank.Eight };
-        private readonly PokerHand[] weakCases = 
+        private readonly PokerHand[] strongCases = 
         {
             new PokerHand(Dealer.DealStrongHighCard()),
-            new PokerHand(Dealer.DealOnePairThreeHighCards(Rank.Two, HighCards))
+            new PokerHand(Dealer.DealOnePairThreeHighCards(Rank.Two, HighCards)),
+            new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.Two, Rank.Three, Rank.King))
         };
 
         [Test]
-        [TestCaseSource("weakCases")]
+        [TestCaseSource("strongCases")]
         public void HighCard_ComparedWith_WeakCases_ReturnsWeak(PokerHand strongerPokerHand)
         {
             Assert.AreEqual(Strength.Weak, weakHighCard.CompareWith(strongerPokerHand));
