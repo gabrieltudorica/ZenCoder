@@ -10,7 +10,7 @@ namespace PokerTests.EvaluatorsTests
     public class HighCardEvaluatorTests
     {
         private readonly HighCardEvaluator highCardEvaluator =
-            new HighCardEvaluator(Dealer.DealForStrongHighCard());
+            new HighCardEvaluator(Dealer.DealStrongHighCard());
 
         [Test]
         public void GetRankCategory_ReturnsHighCard()

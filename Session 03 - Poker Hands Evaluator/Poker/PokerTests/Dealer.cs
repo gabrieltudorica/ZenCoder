@@ -5,7 +5,7 @@ namespace PokerTests
 {
     public static class Dealer
     {
-        public static List<Card> DealForStrongHighCard()
+        public static List<Card> DealStrongHighCard()
         {
             return new List<Card>
             {
@@ -17,7 +17,7 @@ namespace PokerTests
             };
         }
 
-        public static List<Card> DealForWeakHighCard()
+        public static List<Card> DealWeakHighCard()
         {
             return new List<Card>
             {
@@ -29,52 +29,28 @@ namespace PokerTests
             };
         }
 
-        public static List<Card> DealForStrongOnePair()
-        {
-            return new List<Card>
-            {
-                new Card(Rank.Eight, Suit.Hearts),
-                new Card(Rank.Ace, Suit.Diamnods),
-                new Card(Rank.Ace, Suit.Spades),
-                new Card(Rank.Seven, Suit.Clubs),
-                new Card(Rank.Four, Suit.Hearts)
-            };
-        }
-
-        public static List<Card> DealForWeakOnePair()
-        {
-            return new List<Card>
-            {
-                new Card(Rank.Four, Suit.Hearts),
-                new Card(Rank.Two, Suit.Diamnods),
-                new Card(Rank.Two, Suit.Spades),
-                new Card(Rank.Eight, Suit.Clubs),
-                new Card(Rank.Seven, Suit.Hearts)
-            };
-        }
-
-        public static List<Card> DealForOnePairWithStrongHighCards()
-        {
-            return new List<Card>
-            {
-                new Card(Rank.Two, Suit.Hearts),
-                new Card(Rank.Two, Suit.Diamnods),
-                new Card(Rank.Ace, Suit.Spades),
-                new Card(Rank.King, Suit.Clubs),
-                new Card(Rank.Queen, Suit.Hearts)
-            };
-        }
-
-        public static List<Card> DealForOnePairWithWeakHighCards()
+        public static List<Card> DealOnePairThreeHighCards(Rank pair, Rank[] highCards)
         {
             return new List<Card>
             {                
-                new Card(Rank.Two, Suit.Hearts),
-                new Card(Rank.Two, Suit.Diamnods),
-                new Card(Rank.Ten, Suit.Hearts),
-                new Card(Rank.Nine, Suit.Clubs),
-                new Card(Rank.Eight, Suit.Hearts)
+                new Card(pair, Suit.Hearts),
+                new Card(pair, Suit.Diamnods),
+                new Card(highCards[0], Suit.Hearts),
+                new Card(highCards[1], Suit.Clubs),
+                new Card(highCards[2], Suit.Hearts)
             };
         }
+
+        public static List<Card> DealTwoPairsOneHighCard(Rank firstPair, Rank secondPair, Rank highCard)
+        {
+            return new List<Card>
+            {                
+                new Card(firstPair, Suit.Hearts),
+                new Card(firstPair, Suit.Diamnods),
+                new Card(secondPair, Suit.Hearts),
+                new Card(secondPair, Suit.Clubs),
+                new Card(highCard, Suit.Hearts)
+            };
+        }     
     }
 }

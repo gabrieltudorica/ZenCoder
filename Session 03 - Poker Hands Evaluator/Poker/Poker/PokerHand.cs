@@ -79,16 +79,16 @@ namespace Poker
 
         private Strength GetStrengthFromTieRankCategories(List<Rank> keyCards)
         {
-            List<Rank> currentHandKeyCards = GetHighCardsDescending();
+            List<Rank> currentHandHighCards = GetHighCardsDescending();
 
-            for (int i = 0; i < currentHandKeyCards.Count; i++)
+            for (int i = 0; i < currentHandHighCards.Count; i++)
             {
-                if (currentHandKeyCards[i] > keyCards[i])
+                if (currentHandHighCards[i] > keyCards[i])
                 {
                     return Strength.Strong;
                 }
 
-                if (currentHandKeyCards[i] < keyCards[i])
+                if (currentHandHighCards[i] < keyCards[i])
                 {
                     return Strength.Weak;
                 }

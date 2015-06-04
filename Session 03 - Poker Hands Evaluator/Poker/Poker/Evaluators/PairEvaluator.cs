@@ -41,6 +41,11 @@ namespace Poker.Evaluators
             {
                 rankCategory = RankCategory.OnePair;
             }
+
+            if (pairs.Count == 2)
+            {
+                rankCategory = RankCategory.TwoPairs;
+            }
         }
 
         private void FindAllPairs()

@@ -4,6 +4,7 @@
     {
         None,
         HighCard,
-        OnePair
+        OnePair,
+        TwoPairs
     }
 }

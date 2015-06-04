@@ -1,18 +1,21 @@
 ﻿using NUnit.Framework;
 using Poker;
+using Poker.Model;
 
 namespace PokerTests.PokerHandTests
 {
     [TestFixture]
     public class HighCardTests
     {
-        private readonly PokerHand strongHighCard = new PokerHand(Dealer.DealForStrongHighCard());
-        private readonly PokerHand weakHighCard = new PokerHand(Dealer.DealForWeakHighCard());
+        private readonly PokerHand strongHighCard = new PokerHand(Dealer.DealStrongHighCard());
+        private readonly PokerHand weakHighCard = new PokerHand(Dealer.DealWeakHighCard());
+
+        private static readonly Rank[] HighCards = {Rank.Four, Rank.Seven, Rank.Eight};
 
         private readonly PokerHand[] weakCases = 
         {
-            new PokerHand(Dealer.DealForStrongHighCard()),
-            new PokerHand(Dealer.DealForWeakOnePair())
+            new PokerHand(Dealer.DealStrongHighCard()),
+            new PokerHand(Dealer.DealOnePairThreeHighCards(Rank.Two, HighCards))
         };
         
         [Test]
