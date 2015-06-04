@@ -18,11 +18,11 @@ namespace PokerTests.EvaluatorsTests
         }
 
         [Test]
-        public void GetKeyCards_ReturnsAllCards_WhenNoPairsExist()
+        public void GetHighCardsDescending_ReturnsAllCardsInDescendingOrder_WhenNoPairsExist()
         {
             var pairEvaluator = new PairEvaluator(Dealer.DealForStrongHighCard());
 
-            Assert.AreEqual(5, pairEvaluator.GetKeyCards().Count);
+            Assert.AreEqual(5, pairEvaluator.GetHighCardsDescending().Count);
         }
 
         [Test]
@@ -34,11 +34,11 @@ namespace PokerTests.EvaluatorsTests
         }
 
         [Test]
-        public void GetKeyCards_ReturnsListWithPairCardAndHighCardsInDescendingOrder_WhenOnePairExists()
+        public void GetHighCardsDescending_ReturnsListWithPairCardAndHighCardsInDescendingOrder_WhenOnePairExists()
         {
             var pairEvaluator = new PairEvaluator(Dealer.DealForWeakOnePair());
 
-            List<Rank> keyCards = pairEvaluator.GetKeyCards();
+            List<Rank> keyCards = pairEvaluator.GetHighCardsDescending();
             
             Assert.AreEqual(4, keyCards.Count);
             Assert.AreEqual(Rank.Two, keyCards[0]);

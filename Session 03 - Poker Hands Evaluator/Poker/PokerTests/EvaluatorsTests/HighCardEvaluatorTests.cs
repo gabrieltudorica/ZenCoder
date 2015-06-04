@@ -19,10 +19,14 @@ namespace PokerTests.EvaluatorsTests
         }
 
         [Test]
-        public void GetKeyCards_ReturnsHighestCardRank()
+        public void GetHighCardsDescending_ReturnsHighCardsInDescendingOrder()
         {
-            List<Rank> keyCards = highCardEvaluator.GetKeyCards();
+            List<Rank> keyCards = highCardEvaluator.GetHighCardsDescending();
 
+            Assert.AreEqual(Rank.Ace, keyCards[0]);
+            Assert.AreEqual(Rank.Ace, keyCards[0]);
+            Assert.AreEqual(Rank.Ace, keyCards[0]);
+            Assert.AreEqual(Rank.Ace, keyCards[0]);
             Assert.AreEqual(Rank.Ace, keyCards[0]);
         }
     }

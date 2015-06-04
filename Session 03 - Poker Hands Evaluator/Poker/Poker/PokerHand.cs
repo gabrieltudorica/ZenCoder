@@ -25,7 +25,7 @@ namespace Poker
 
         public List<Rank> GetKeyCards()
         {
-            return evaluator.GetKeyCards();
+            return evaluator.GetHighCardsDescending();
         }
 
         private void ValidateNumberOfCards()

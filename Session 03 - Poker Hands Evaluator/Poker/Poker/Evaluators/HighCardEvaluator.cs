@@ -18,11 +18,11 @@ namespace Poker.Evaluators
             return RankCategory.HighCard;
         }
 
-        public List<Rank> GetKeyCards()
+        public List<Rank> GetHighCardsDescending()
         {
-            var orderedCards = cards.OrderByDescending(x => x.Rank);
+            var highCardsDescending = cards.OrderByDescending(x => x.Rank);
 
-            return orderedCards.Select(card => card.Rank).ToList();
+            return highCardsDescending.Select(card => card.Rank).ToList();
         }
     }
 }

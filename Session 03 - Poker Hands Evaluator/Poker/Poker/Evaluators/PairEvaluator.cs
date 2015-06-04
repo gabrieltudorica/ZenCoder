@@ -9,7 +9,7 @@ namespace Poker.Evaluators
         private readonly List<Card> cards;
         private readonly Dictionary<Rank, int> pairs = new Dictionary<Rank, int>();
         private RankCategory rankCategory = RankCategory.None;
-        private List<Rank> keyCards = new List<Rank>();
+        private List<Rank> highCards = new List<Rank>();
 
         public PairEvaluator(List<Card> cards)
         {
@@ -22,15 +22,15 @@ namespace Poker.Evaluators
             return rankCategory;
         }
 
-        public List<Rank> GetKeyCards()
+        public List<Rank> GetHighCardsDescending()
         {
-            return keyCards;
+            return highCards;
         }
 
         private void Initialize()
         {
             FindRank();
-            FindKeyCards();
+            FindHighCards();
         }
 
         private void FindRank()
@@ -77,10 +77,10 @@ namespace Poker.Evaluators
             }
         }
 
-        private void FindKeyCards()
+        private void FindHighCards()
         {
-            keyCards = GetSingleCardFromEachPair();
-            keyCards.AddRange(GetHighCardsInDescendingOrder());
+            highCards = GetSingleCardFromEachPair();
+            highCards.AddRange(GetHighCardsInDescendingOrder());
         }
 
         private List<Rank> GetSingleCardFromEachPair()

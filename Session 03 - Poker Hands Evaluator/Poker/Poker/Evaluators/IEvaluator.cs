@@ -6,6 +6,6 @@ namespace Poker.Evaluators
     public interface IEvaluator
     {
         RankCategory GetRankCategory();
-        List<Rank> GetKeyCards();
+        List<Rank> GetHighCardsDescending();
     }
 }
