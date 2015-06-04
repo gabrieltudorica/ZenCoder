@@ -8,8 +8,13 @@ namespace PokerTests.PokerHandTests
     [TestFixture]
     public class TwoPairsTests
     {
-        private readonly PokerHand twoPairsWeakHighCard = GetTwoPairsWeakHighCard();
-        private readonly PokerHand twoPairsStrongHighCard = GetTwoPairsStrongHighCard();           
+        private static readonly List<Card> CardsForTwoPairsWeakHighCard = 
+            Dealer.DealTwoPairsOneHighCard(Rank.Ace,Rank.Queen, Rank.Two);
+        private readonly PokerHand twoPairsWeakHighCard = new PokerHand(CardsForTwoPairsWeakHighCard);
+        
+        private static readonly List<Card> CardsForTwoPairsStrongHighCard =
+            Dealer.DealTwoPairsOneHighCard(Rank.Ace, Rank.Queen, Rank.King);
+        private readonly PokerHand twoPairsStrongHighCard = new PokerHand(CardsForTwoPairsStrongHighCard);
 
         [Test]
         public void TwoPairsWithOneHighCard_ComparedWith_SamePairsWithSameHighCard_ReturnsEqual()
@@ -29,18 +34,30 @@ namespace PokerTests.PokerHandTests
             Assert.AreEqual(Strength.Strong, twoPairsStrongHighCard.CompareWith(twoPairsWeakHighCard));
         }
 
-        private static PokerHand GetTwoPairsWeakHighCard()
+        private static readonly PokerHand[] WeakCases = 
         {
-            List<Card> cards = Dealer.DealTwoPairsOneHighCard(Rank.Ace, Rank.King, Rank.Two);
+            new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.King, Rank.Jack, Rank.Nine)),
+            new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.Ten, Rank.Nine, Rank.Eight))
+        };
 
-            return new PokerHand(cards);
+        [Test]
+        [TestCaseSource("WeakCases")]
+        public void TwoStrongPairs_ComparedWith_TwoWeakPairs_ReturnsStrong(PokerHand weakPairs)
+        {
+            Assert.AreEqual(Strength.Strong, twoPairsStrongHighCard.CompareWith(weakPairs));
         }
 
-        private static PokerHand GetTwoPairsStrongHighCard()
+        private readonly PokerHand[] strongCases = 
         {
-            List<Card> cards = Dealer.DealTwoPairsOneHighCard(Rank.Ace, Rank.King, Rank.Queen);
+            new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.King, Rank.Jack, Rank.Nine)),
+            new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.Ace, Rank.King, Rank.Nine))
+        };
 
-            return new PokerHand(cards);
+        [Test]
+        [TestCaseSource("strongCases")]
+        public void TwoWeakPairs_ComparedWith_TwoStrongPairs_ReturnsWeak(PokerHand strongPairs)
+        {
+            Assert.AreEqual(Strength.Weak, WeakCases[1].CompareWith(strongPairs));
         }
     }
 }
