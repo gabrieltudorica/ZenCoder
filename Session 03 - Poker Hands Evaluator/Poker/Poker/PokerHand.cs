@@ -23,7 +23,7 @@ namespace Poker
             return evaluator.GetRankCategory();
         }
 
-        public List<Rank> GetKeyCards()
+        public List<Rank> GetHighCardsDescending()
         {
             return evaluator.GetHighCardsDescending();
         }
@@ -74,12 +74,12 @@ namespace Poker
                 return Strength.Weak;
             }
 
-           return GetStrengthFromTieRankCategories(otherHand.GetKeyCards());
+           return GetStrengthFromTieRankCategories(otherHand.GetHighCardsDescending());
         }
 
         private Strength GetStrengthFromTieRankCategories(List<Rank> keyCards)
         {
-            List<Rank> currentHandKeyCards = GetKeyCards();
+            List<Rank> currentHandKeyCards = GetHighCardsDescending();
 
             for (int i = 0; i < currentHandKeyCards.Count; i++)
             {
