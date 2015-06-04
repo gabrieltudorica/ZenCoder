@@ -8,15 +8,7 @@ namespace PokerTests.PokerHandTests
     public class HighCardTests
     {
         private readonly PokerHand strongHighCard = new PokerHand(Dealer.DealStrongHighCard());
-        private readonly PokerHand weakHighCard = new PokerHand(Dealer.DealWeakHighCard());
-
-        private static readonly Rank[] HighCards = {Rank.Four, Rank.Seven, Rank.Eight};
-
-        private readonly PokerHand[] weakCases = 
-        {
-            new PokerHand(Dealer.DealStrongHighCard()),
-            new PokerHand(Dealer.DealOnePairThreeHighCards(Rank.Two, HighCards))
-        };
+        private readonly PokerHand weakHighCard = new PokerHand(Dealer.DealWeakHighCard());        
         
         [Test]
         public void StrongHighCard_ComparedWith_WeakHighCard_ReturnsStrong()
@@ -29,6 +21,13 @@ namespace PokerTests.PokerHandTests
         {
             Assert.AreEqual(Strength.Equal, strongHighCard.CompareWith(strongHighCard));
         }
+
+        private static readonly Rank[] HighCards = { Rank.Four, Rank.Seven, Rank.Eight };
+        private readonly PokerHand[] weakCases = 
+        {
+            new PokerHand(Dealer.DealStrongHighCard()),
+            new PokerHand(Dealer.DealOnePairThreeHighCards(Rank.Two, HighCards))
+        };
 
         [Test]
         [TestCaseSource("weakCases")]

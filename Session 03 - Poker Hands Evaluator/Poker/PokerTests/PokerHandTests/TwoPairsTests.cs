@@ -14,9 +14,7 @@ namespace PokerTests.PokerHandTests
         [Test]
         public void TwoPairsWithOneHighCard_ComparedWith_SamePairsWithSameHighCard_ReturnsEqual()
         {
-            var twoPairs = new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.Ace, Rank.King, Rank.Queen));
-
-            Assert.AreEqual(Strength.Equal, twoPairs.CompareWith(twoPairs));
+            Assert.AreEqual(Strength.Equal, twoPairsWeakHighCard.CompareWith(twoPairsWeakHighCard));
         }
 
         [Test]
