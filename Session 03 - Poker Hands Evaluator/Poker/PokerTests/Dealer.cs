@@ -64,5 +64,17 @@ namespace PokerTests
                 new Card(highCards[1], Suit.Hearts),
             };
         }
+
+        public static List<Card> DealFullHouse(Rank threeOfAKind, Rank onePair)
+        {
+            return new List<Card>
+            {
+                new Card(threeOfAKind, Suit.Clubs),
+                new Card(threeOfAKind, Suit.Diamnods),
+                new Card(threeOfAKind, Suit.Hearts),
+                new Card(onePair, Suit.Spades),
+                new Card(onePair, Suit.Clubs)
+            };
+        }
     }
 }

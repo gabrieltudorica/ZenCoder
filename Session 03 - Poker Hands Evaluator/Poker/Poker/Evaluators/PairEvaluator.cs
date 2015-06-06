@@ -36,22 +36,41 @@ namespace Poker.Evaluators
         private void FindRank()
         {
             FindAllPairs();
+            
+            if (pairs.Count == 0)
+            {
+                return;
+            }
 
             if (pairs.Count == 1)
             {
-                if (pairs[pairs.Keys.First()] == 3)
-                {
-                    rankCategory = RankCategory.ThreeOfAKind;
-                    return;
-                }
-
-                rankCategory = RankCategory.OnePair;
+                rankCategory = GetPairRankCategory(pairs[pairs.Keys.First()]);
+                return;
             }
 
-            if (pairs.Count == 2)
+            if (IsFullHouse())
             {
-                rankCategory = RankCategory.TwoPairs;
+                rankCategory = RankCategory.FullHouse;
+                return;
             }
+
+            rankCategory = RankCategory.TwoPairs;
+        }
+
+        private static RankCategory GetPairRankCategory(int numberOfCardsInPair)
+        {
+            var possiblePairRanks = new Dictionary<int, RankCategory>
+            {
+                {2, RankCategory.OnePair},
+                {3, RankCategory.ThreeOfAKind}
+            };
+
+            return possiblePairRanks[numberOfCardsInPair];
+        }
+
+        private bool IsFullHouse()
+        {
+            return pairs.Keys.Any(rank => GetPairRankCategory(pairs[rank]) == RankCategory.ThreeOfAKind);
         }
 
         private void FindAllPairs()

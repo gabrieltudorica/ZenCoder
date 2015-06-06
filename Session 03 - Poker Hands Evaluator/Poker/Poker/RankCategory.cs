@@ -6,6 +6,7 @@
         HighCard,
         OnePair,
         TwoPairs,
-        ThreeOfAKind
+        ThreeOfAKind,
+        FullHouse
     }
 }

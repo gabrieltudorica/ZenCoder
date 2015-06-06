@@ -102,7 +102,7 @@ namespace PokerTests.EvaluatorsTests
 
             Assert.AreEqual(RankCategory.ThreeOfAKind, pairEvaluator.GetRankCategory());
         }
-
+        
         [Test]
         public void GetHighCardsDescending_ReturnsThreeHighCards_WhenThreeOfAKindExists()
         {
@@ -115,6 +115,32 @@ namespace PokerTests.EvaluatorsTests
             Assert.AreEqual(ThreeOfAKind, highCards[0]);
             Assert.AreEqual(expectedHighCardsDescendingOrder[0], highCards[1]);
             Assert.AreEqual(expectedHighCardsDescendingOrder[1], highCards[2]);
+        }
+
+        private static readonly Rank[] ExpectedFullHouseHighCards = { Rank.Ace, Rank.King };
+
+        private readonly List<Card> fullHouseCards = Dealer.DealFullHouse(
+            ExpectedFullHouseHighCards[0],
+            ExpectedFullHouseHighCards[1]);
+
+        [Test]
+        public void GetRankCategory_ReturnsFullHouse_WhenFullHouseExists()
+        {
+            var pairEvaluator = new PairEvaluator(fullHouseCards);
+
+            Assert.AreEqual(RankCategory.FullHouse, pairEvaluator.GetRankCategory());
+        }
+
+        [Test]
+        public void GetHighCardsDescending_ReturnsTwoHighCards_WhenFullHouseExists()
+        {
+            var pairEvaluator = new PairEvaluator(fullHouseCards);
+
+            List<Rank> highCards = pairEvaluator.GetHighCardsDescending();
+
+            Assert.AreEqual(2, highCards.Count);
+            Assert.AreEqual(ExpectedFullHouseHighCards[0], highCards[0]);
+            Assert.AreEqual(ExpectedFullHouseHighCards[1], highCards[1]);
         }
 
         public Rank[] GetCardRanksDescending(Rank[] cards)
