@@ -5,6 +5,7 @@
         None,
         HighCard,
         OnePair,
-        TwoPairs
+        TwoPairs,
+        ThreeOfAKind
     }
 }

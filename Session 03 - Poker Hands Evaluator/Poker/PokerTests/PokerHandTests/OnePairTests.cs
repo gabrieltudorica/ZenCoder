@@ -45,7 +45,7 @@ namespace PokerTests.PokerHandTests
             Assert.AreEqual(Strength.Strong, strongPair.CompareWith(weakPair));
         }
 
-        private static readonly Rank[] HighCards = { Rank.Two, Rank.Three, Rank.Five };
+        private static readonly Rank[] HighCards = { Rank.Four, Rank.Three, Rank.Five };
 
         private static PokerHand GetWeakPair()
         {

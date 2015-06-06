@@ -76,6 +76,7 @@
     <Compile Include="PokerHandTests\HighCardTests.cs" />
     <Compile Include="PokerHandTests\InitializationTests.cs" />
     <Compile Include="PokerHandTests\OnePairTests.cs" />
+    <Compile Include="PokerHandTests\ThreeOfAKindTests.cs" />
     <Compile Include="PokerHandTests\TwoPairsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

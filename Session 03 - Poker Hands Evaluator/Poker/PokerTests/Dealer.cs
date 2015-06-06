@@ -51,6 +51,18 @@ namespace PokerTests
                 new Card(secondPair, Suit.Clubs),
                 new Card(highCard, Suit.Hearts)
             };
-        }     
+        }
+
+        public static List<Card> DealThreeOfAKindTwoHighCards(Rank threeOfAKind, Rank[] highCards)
+        {
+            return new List<Card>
+            {
+                new Card(threeOfAKind, Suit.Clubs),
+                new Card(threeOfAKind, Suit.Diamnods),
+                new Card(threeOfAKind, Suit.Hearts),
+                new Card(highCards[0], Suit.Spades),
+                new Card(highCards[1], Suit.Hearts),
+            };
+        }
     }
 }

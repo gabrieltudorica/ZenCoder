@@ -39,6 +39,12 @@ namespace Poker.Evaluators
 
             if (pairs.Count == 1)
             {
+                if (pairs[pairs.Keys.First()] == 3)
+                {
+                    rankCategory = RankCategory.ThreeOfAKind;
+                    return;
+                }
+
                 rankCategory = RankCategory.OnePair;
             }
 
@@ -76,9 +82,9 @@ namespace Poker.Evaluators
 
         private void AddValidPair(KeyValuePair<Rank, int> potentialPair)
         {
-            if (potentialPair.Value == 2)
+            if (potentialPair.Value > 1)
             {
-                pairs.Add(potentialPair.Key, 2);
+                pairs.Add(potentialPair.Key, potentialPair.Value);
             }
         }
 
