@@ -76,5 +76,17 @@ namespace PokerTests
                 new Card(onePair, Suit.Clubs)
             };
         }
+
+        public static List<Card> DealFourOfAKindOneHighCard(Rank fourOfAKind, Rank highCard)
+        {
+            return new List<Card>
+            {
+                new Card(fourOfAKind, Suit.Clubs),
+                new Card(fourOfAKind, Suit.Diamnods),
+                new Card(fourOfAKind, Suit.Hearts),
+                new Card(fourOfAKind, Suit.Spades),
+                new Card(highCard, Suit.Hearts)
+            };
+        }
     }
 }

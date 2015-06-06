@@ -56,7 +56,7 @@ namespace PokerTests.EvaluatorsTests
             Rank[] expectedHighCardsDescendingOrder = GetCardRanksDescending(ExpectedOnePairHighCards);
 
             List<Rank> highCards = pairEvaluator.GetHighCardsDescending();
-            
+
             Assert.AreEqual(4, highCards.Count);
             Assert.AreEqual(PairOne, highCards[0]);
             Assert.AreEqual(expectedHighCardsDescendingOrder[0], highCards[1]);
@@ -141,6 +141,32 @@ namespace PokerTests.EvaluatorsTests
             Assert.AreEqual(2, highCards.Count);
             Assert.AreEqual(ExpectedFullHouseHighCards[0], highCards[0]);
             Assert.AreEqual(ExpectedFullHouseHighCards[1], highCards[1]);
+        }
+
+        private static readonly Rank[] ExpectedFourOfAKindHighCards = {Rank.Ace, Rank.Two};
+
+        private readonly List<Card> fourOfAKindCards = Dealer.DealFourOfAKindOneHighCard(
+            ExpectedFourOfAKindHighCards[0],
+            ExpectedFourOfAKindHighCards[1]);
+        
+        [Test]
+        public void GetRankCategory_ReturnsFourOfAKind_WhenFourOfAKindExists()
+        {
+            var pairEvaluator = new PairEvaluator(fourOfAKindCards);
+
+            Assert.AreEqual(RankCategory.FourOfAKind, pairEvaluator.GetRankCategory());
+        }
+
+        [Test]
+        public void GetHighCardsDescending_ReturnsTwoHighCards_WhenFourOfAKind()
+        {
+            var pairEvaluator = new PairEvaluator(fourOfAKindCards);
+
+            List<Rank> highCards = pairEvaluator.GetHighCardsDescending();
+
+            Assert.AreEqual(2, highCards.Count);
+            Assert.AreEqual(ExpectedFourOfAKindHighCards[0], highCards[0]);
+            Assert.AreEqual(ExpectedFourOfAKindHighCards[1], highCards[1]);
         }
 
         public Rank[] GetCardRanksDescending(Rank[] cards)

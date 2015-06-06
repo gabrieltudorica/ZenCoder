@@ -62,7 +62,8 @@ namespace Poker.Evaluators
             var possiblePairRanks = new Dictionary<int, RankCategory>
             {
                 {2, RankCategory.OnePair},
-                {3, RankCategory.ThreeOfAKind}
+                {3, RankCategory.ThreeOfAKind},
+                {4, RankCategory.FourOfAKind}
             };
 
             return possiblePairRanks[numberOfCardsInPair];

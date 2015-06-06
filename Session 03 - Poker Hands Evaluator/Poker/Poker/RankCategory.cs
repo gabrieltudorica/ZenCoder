@@ -7,6 +7,7 @@
         OnePair,
         TwoPairs,
         ThreeOfAKind,
-        FullHouse
+        FullHouse,
+        FourOfAKind
     }
 }
