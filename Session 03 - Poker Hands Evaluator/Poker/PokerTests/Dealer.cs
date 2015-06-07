@@ -103,11 +103,47 @@ namespace PokerTests
             };
         }
 
+        public static List<Card> DealNineHighStraight()
+        {
+            return new List<Card>
+            {
+                new Card(Rank.Five, Suit.Clubs),
+                new Card(Rank.Seven, Suit.Diamnods),
+                new Card(Rank.Six, Suit.Hearts),
+                new Card(Rank.Eight, Suit.Spades),
+                new Card(Rank.Nine, Suit.Clubs),
+            };
+        }
+
+        public static List<Card> DealFiveHighStraight()
+        {
+            return new List<Card>
+            {
+                new Card(Rank.Two, Suit.Clubs),
+                new Card(Rank.Three, Suit.Diamnods),
+                new Card(Rank.Four, Suit.Hearts),
+                new Card(Rank.Five, Suit.Spades),
+                new Card(Rank.Ace, Suit.Clubs),
+            };
+        }
+
+        public static List<Card> DealAceHighStraight()
+        {
+            return new List<Card>
+            {
+                new Card(Rank.Ace, Suit.Clubs),
+                new Card(Rank.Ten, Suit.Diamnods),
+                new Card(Rank.Jack, Suit.Hearts),
+                new Card(Rank.Queen, Suit.Spades),
+                new Card(Rank.King, Suit.Clubs),
+            };
+        }
+
         public static Rank[] GetCardRanksDescending(Rank[] cards)
         {
             Array.Sort(cards);
 
             return cards.Reverse().ToArray();
-        }
+        }        
     }
 }

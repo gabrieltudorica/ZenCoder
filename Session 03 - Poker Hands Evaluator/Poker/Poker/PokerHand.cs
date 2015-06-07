@@ -42,6 +42,7 @@ namespace Poker
         {
             var evaluators = new List<IEvaluator>
             {
+                new StraightEvaluator(cards),
                 new FlushEvaluator(cards),
                 new PairEvaluator(cards),
                 new HighCardEvaluator(cards)
