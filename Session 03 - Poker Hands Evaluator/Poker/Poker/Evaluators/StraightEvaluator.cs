@@ -19,12 +19,7 @@ namespace Poker.Evaluators
         {
             if (AreConsecutive() || IsFiveHighStraight())
             {
-                if (flushEvaluator.GetRankCategory() == RankCategory.Flush)
-                {
-                    return RankCategory.StraightFlush;
-                }
-
-                return RankCategory.Straight;
+                return GetStraightType();
             }
 
             return RankCategory.None;
@@ -81,6 +76,16 @@ namespace Poker.Evaluators
         private List<Rank> GetDescendingCards()
         {
             return cards.OrderByDescending(x => x.Rank).Select(x => x.Rank).ToList();
+        }
+
+        private RankCategory GetStraightType()
+        {
+            if (flushEvaluator.GetRankCategory() == RankCategory.Flush)
+            {
+                return RankCategory.StraightFlush;
+            }
+
+            return RankCategory.Straight;
         }
     }
 }

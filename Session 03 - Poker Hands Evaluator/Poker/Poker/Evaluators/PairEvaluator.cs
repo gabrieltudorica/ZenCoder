@@ -6,8 +6,7 @@ namespace Poker.Evaluators
 {
     public class PairEvaluator : IEvaluator
     {
-        private readonly List<Card> cards;
-        private readonly Dictionary<Rank, int> pairs = new Dictionary<Rank, int>();
+        private readonly List<Card> cards;        
         private RankCategory rankCategory = RankCategory.None;
         private List<Rank> highCards = new List<Rank>();
 
@@ -32,6 +31,8 @@ namespace Poker.Evaluators
             FindRank();
             FindHighCards();
         }
+
+        private readonly Dictionary<Rank, int> pairs = new Dictionary<Rank, int>();
 
         private void FindRank()
         {
