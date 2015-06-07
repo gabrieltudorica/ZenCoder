@@ -68,17 +68,49 @@ namespace PokerTests.PokerHandTests
             Assert.AreEqual(Strength.Strong, twoPairsStrongHighCard.CompareWith(weakPairs));
         }
 
-        private readonly PokerHand[] strongCases = 
+        private readonly PokerHand[] strongPairsCases = 
         {
             new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.King, Rank.Jack, Rank.Nine)),
             new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.Ace, Rank.King, Rank.Nine))
         };
 
         [Test]
-        [TestCaseSource("strongCases")]
+        [TestCaseSource("strongPairsCases")]
         public void TwoWeakPairs_ComparedWith_TwoStrongPairs_ReturnsWeak(PokerHand strongPairs)
         {
             Assert.AreEqual(Strength.Weak, WeakCases[1].CompareWith(strongPairs));
+        }
+
+        private static readonly Dictionary<RankCategory, List<Card>> AllCategories = Dealer.DealAllCategories();
+
+        private readonly PokerHand[] strongCases = 
+        {            
+            new PokerHand(AllCategories[RankCategory.ThreeOfAKind]),
+            new PokerHand(AllCategories[RankCategory.Straight]),
+            new PokerHand(AllCategories[RankCategory.Flush]),
+            new PokerHand(AllCategories[RankCategory.FullHouse]),
+            new PokerHand(AllCategories[RankCategory.FourOfAKind]),
+            new PokerHand(AllCategories[RankCategory.StraightFlush]),
+        };
+
+        [Test]
+        [TestCaseSource("strongCases")]
+        public void TwoPairs_ComparedWith_StrongCases_ReturnsWeak(PokerHand strongerPokerHand)
+        {
+            Assert.AreEqual(Strength.Weak, twoPairsWeakHighCard.CompareWith(strongerPokerHand));
+        }
+
+        private readonly PokerHand[] weakCases = 
+        {
+            new PokerHand(AllCategories[RankCategory.HighCard]),
+            new PokerHand(AllCategories[RankCategory.OnePair])
+        };
+
+        [Test]
+        [TestCaseSource("weakCases")]
+        public void TwoPairs_ComparedWith_WeakCases_ReturnsStrong(PokerHand strongerPokerHand)
+        {
+            Assert.AreEqual(Strength.Strong, twoPairsWeakHighCard.CompareWith(strongerPokerHand));
         }
     }
 }

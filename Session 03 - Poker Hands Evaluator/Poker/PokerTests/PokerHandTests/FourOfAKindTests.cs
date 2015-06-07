@@ -42,5 +42,37 @@ namespace PokerTests.PokerHandTests
         {
             Assert.AreEqual(Strength.Weak, weakFourOfAKind.CompareWith(strongFourOfAKind));
         }
+
+        private static readonly Dictionary<RankCategory, List<Card>> AllCategories = Dealer.DealAllCategories();
+
+        private readonly PokerHand[] strongCases = 
+        {            
+            new PokerHand(AllCategories[RankCategory.StraightFlush]),
+        };
+
+        [Test]
+        [TestCaseSource("strongCases")]
+        public void FourOfAKind_ComparedWith_StrongCases_ReturnsWeak(PokerHand strongerPokerHand)
+        {
+            Assert.AreEqual(Strength.Weak, weakFourOfAKind.CompareWith(strongerPokerHand));
+        }
+
+        private readonly PokerHand[] weakCases = 
+        {
+            new PokerHand(AllCategories[RankCategory.HighCard]),
+            new PokerHand(AllCategories[RankCategory.OnePair]),
+            new PokerHand(AllCategories[RankCategory.TwoPairs]),
+            new PokerHand(AllCategories[RankCategory.ThreeOfAKind]),
+            new PokerHand(AllCategories[RankCategory.Straight]),
+            new PokerHand(AllCategories[RankCategory.Flush]),
+            new PokerHand(AllCategories[RankCategory.FullHouse])
+        };
+
+        [Test]
+        [TestCaseSource("weakCases")]
+        public void FourOfAKind_ComparedWith_WeakCases_ReturnsStrong(PokerHand strongerPokerHand)
+        {
+            Assert.AreEqual(Strength.Strong, weakFourOfAKind.CompareWith(strongerPokerHand));
+        }
     }
 }

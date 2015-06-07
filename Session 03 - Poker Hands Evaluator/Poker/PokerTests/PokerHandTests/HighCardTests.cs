@@ -40,22 +40,34 @@ namespace PokerTests.PokerHandTests
         }
 
         [Test]
+        public void WeakHighCard_ComparedWithStrongHighCard_ReturnsWeak()
+        {
+            Assert.AreEqual(Strength.Weak, weakHighCard.CompareWith(strongHighCard));
+        }
+
+        [Test]
         public void AHighCard_ComparedWith_SameHighCard_ReturnsEqual()
         {
             Assert.AreEqual(Strength.Equal, strongHighCard.CompareWith(strongHighCard));
         }
 
-        private static readonly Rank[] HighCards = { Rank.Four, Rank.Seven, Rank.Eight };
+        private static readonly Dictionary<RankCategory, List<Card>> AllCategories = Dealer.DealAllCategories();
+
         private readonly PokerHand[] strongCases = 
         {
-            new PokerHand(Dealer.DealStrongHighCard()),
-            new PokerHand(Dealer.DealOnePairThreeHighCards(Rank.Two, HighCards)),
-            new PokerHand(Dealer.DealTwoPairsOneHighCard(Rank.Two, Rank.Three, Rank.King))
+            new PokerHand(AllCategories[RankCategory.OnePair]),
+            new PokerHand(AllCategories[RankCategory.TwoPairs]),
+            new PokerHand(AllCategories[RankCategory.ThreeOfAKind]),
+            new PokerHand(AllCategories[RankCategory.Straight]),
+            new PokerHand(AllCategories[RankCategory.Flush]),
+            new PokerHand(AllCategories[RankCategory.FullHouse]),
+            new PokerHand(AllCategories[RankCategory.FourOfAKind]),
+            new PokerHand(AllCategories[RankCategory.StraightFlush]),
         };
 
         [Test]
         [TestCaseSource("strongCases")]
-        public void HighCard_ComparedWith_WeakCases_ReturnsWeak(PokerHand strongerPokerHand)
+        public void HighCard_ComparedWith_StrongCases_ReturnsWeak(PokerHand strongerPokerHand)
         {
             Assert.AreEqual(Strength.Weak, weakHighCard.CompareWith(strongerPokerHand));
         }

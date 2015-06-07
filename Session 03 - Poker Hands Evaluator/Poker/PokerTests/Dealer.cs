@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Poker;
 using Poker.Model;
 
 namespace PokerTests
@@ -161,6 +162,26 @@ namespace PokerTests
                 new Card(Rank.Six, suit),
                 new Card(Rank.Seven, suit)
             };
+        }
+
+        public static Dictionary<RankCategory, List<Card>> DealAllCategories()
+        {
+            Rank[] highCards = {Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Eight};
+
+            var allCategories = new Dictionary<RankCategory, List<Card>>
+            {
+                {RankCategory.HighCard, DealStrongHighCard()},
+                {RankCategory.OnePair, DealOnePairThreeHighCards(Rank.Ace, new []{highCards[0], highCards[1], highCards[2]})},
+                {RankCategory.TwoPairs, DealTwoPairsOneHighCard(Rank.Ace, Rank.King, Rank.Nine)},
+                {RankCategory.ThreeOfAKind, DealThreeOfAKindTwoHighCards(Rank.Ace, new []{highCards[0], highCards[1]})},
+                {RankCategory.Straight, DealAceHighStraight()},
+                {RankCategory.Flush, DealFlush(highCards, Suit.Diamnods)},
+                {RankCategory.FullHouse, DealFullHouse(Rank.Ace, Rank.King)},
+                {RankCategory.FourOfAKind, DealFourOfAKindOneHighCard(Rank.Ace, Rank.King)},
+                {RankCategory.StraightFlush, DealAceHighStraightFlush(Suit.Spades)}
+            };
+
+            return allCategories;
         }
 
         public static Rank[] GetCardRanksDescending(Rank[] cards)
