@@ -77,6 +77,7 @@
     <Compile Include="PokerHandTests\HighCardTests.cs" />
     <Compile Include="PokerHandTests\InitializationTests.cs" />
     <Compile Include="PokerHandTests\OnePairTests.cs" />
+    <Compile Include="PokerHandTests\StraightFlushTests.cs" />
     <Compile Include="PokerHandTests\StraightTests.cs" />
     <Compile Include="PokerHandTests\ThreeOfAKindTests.cs" />
     <Compile Include="PokerHandTests\TwoPairsTests.cs" />

@@ -7,16 +7,23 @@ namespace Poker.Evaluators
     public class StraightEvaluator : IEvaluator
     {
         private readonly List<Card> cards;
+        private readonly FlushEvaluator flushEvaluator;
 
-        public StraightEvaluator(List<Card> cards)
+        public StraightEvaluator(List<Card> cards, FlushEvaluator flushEvaluator)
         {
             this.cards = cards;
+            this.flushEvaluator = flushEvaluator;
         }
 
         public RankCategory GetRankCategory()
         {
             if (AreConsecutive() || IsFiveHighStraight())
             {
+                if (flushEvaluator.GetRankCategory() == RankCategory.Flush)
+                {
+                    return RankCategory.StraightFlush;
+                }
+
                 return RankCategory.Straight;
             }
 

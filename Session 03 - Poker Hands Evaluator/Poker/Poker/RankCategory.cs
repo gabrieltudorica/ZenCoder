@@ -10,6 +10,7 @@
         Straight,
         Flush,
         FullHouse,
-        FourOfAKind,        
+        FourOfAKind,
+        StraightFlush
     }
 }

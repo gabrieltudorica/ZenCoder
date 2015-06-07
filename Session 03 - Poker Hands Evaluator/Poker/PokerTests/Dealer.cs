@@ -111,7 +111,7 @@ namespace PokerTests
                 new Card(Rank.Seven, Suit.Diamnods),
                 new Card(Rank.Six, Suit.Hearts),
                 new Card(Rank.Eight, Suit.Spades),
-                new Card(Rank.Nine, Suit.Clubs),
+                new Card(Rank.Nine, Suit.Clubs)
             };
         }
 
@@ -123,7 +123,7 @@ namespace PokerTests
                 new Card(Rank.Three, Suit.Diamnods),
                 new Card(Rank.Four, Suit.Hearts),
                 new Card(Rank.Five, Suit.Spades),
-                new Card(Rank.Ace, Suit.Clubs),
+                new Card(Rank.Ace, Suit.Clubs)
             };
         }
 
@@ -135,7 +135,31 @@ namespace PokerTests
                 new Card(Rank.Ten, Suit.Diamnods),
                 new Card(Rank.Jack, Suit.Hearts),
                 new Card(Rank.Queen, Suit.Spades),
-                new Card(Rank.King, Suit.Clubs),
+                new Card(Rank.King, Suit.Clubs)
+            };
+        }
+
+        public static List<Card> DealAceHighStraightFlush(Suit suit)
+        {
+            return new List<Card>
+            {
+                new Card(Rank.Ace, suit),
+                new Card(Rank.Ten, suit),
+                new Card(Rank.Jack, suit),
+                new Card(Rank.Queen, suit),
+                new Card(Rank.King, suit)
+            };
+        }
+
+        public static List<Card> DealTenHighStraightFlush(Suit suit)
+        {
+            return new List<Card>
+            {
+                new Card(Rank.Ten, suit),
+                new Card(Rank.Nine, suit),
+                new Card(Rank.Eight, suit),
+                new Card(Rank.Six, suit),
+                new Card(Rank.Seven, suit)
             };
         }
 

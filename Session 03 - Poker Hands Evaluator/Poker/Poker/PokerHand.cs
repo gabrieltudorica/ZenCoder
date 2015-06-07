@@ -40,10 +40,12 @@ namespace Poker
 
         private void Initialize()
         {
+            var flushEvaluator = new FlushEvaluator(cards);
+
             var evaluators = new List<IEvaluator>
             {
-                new StraightEvaluator(cards),
-                new FlushEvaluator(cards),
+                new StraightEvaluator(cards, flushEvaluator),
+                flushEvaluator,
                 new PairEvaluator(cards),
                 new HighCardEvaluator(cards)
             };  
