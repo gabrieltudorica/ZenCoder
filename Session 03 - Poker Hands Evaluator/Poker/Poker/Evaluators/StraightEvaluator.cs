@@ -43,18 +43,13 @@ namespace Poker.Evaluators
             List<Rank> descendingCards = GetHighCardsDescending();
 
             for (int currentIndex = 0; currentIndex < descendingCards.Count; currentIndex++)
-            {                
+            {
                 if (currentIndex == descendingCards.Count - 1)
                 {
                     break;
                 }
 
-                int nextIndex = currentIndex + 1;
-
-                Rank currentCard = descendingCards[currentIndex];
-                Rank nextCard = descendingCards[nextIndex];
-
-                if (currentCard - nextCard != 1)
+                if ((descendingCards[currentIndex] - 1 != descendingCards[currentIndex + 1]))
                 {
                     return false;
                 }
