@@ -7,7 +7,8 @@
         OnePair,
         TwoPairs,
         ThreeOfAKind,
+        Flush,
         FullHouse,
-        FourOfAKind
+        FourOfAKind        
     }
 }

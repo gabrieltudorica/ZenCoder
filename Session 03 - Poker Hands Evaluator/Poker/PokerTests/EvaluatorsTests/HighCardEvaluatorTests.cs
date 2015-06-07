@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Poker;
 using Poker.Evaluators;
@@ -9,8 +10,8 @@ namespace PokerTests.EvaluatorsTests
     [TestFixture]
     public class HighCardEvaluatorTests
     {
-        private readonly HighCardEvaluator highCardEvaluator =
-            new HighCardEvaluator(Dealer.DealStrongHighCard());
+        private static readonly List<Card> HighCardCards = Dealer.DealStrongHighCard(); 
+        private readonly HighCardEvaluator highCardEvaluator = new HighCardEvaluator(HighCardCards);
 
         [Test]
         public void GetRankCategory_ReturnsHighCard()
@@ -21,13 +22,14 @@ namespace PokerTests.EvaluatorsTests
         [Test]
         public void GetHighCardsDescending_ReturnsHighCardsInDescendingOrder()
         {
-            List<Rank> keyCards = highCardEvaluator.GetHighCardsDescending();
+            List<Rank> expectedHighCards = HighCardCards.OrderByDescending(x => x.Rank).Select(x => x.Rank).ToList();
+            List<Rank> highCards = highCardEvaluator.GetHighCardsDescending();
 
-            Assert.AreEqual(Rank.Ace, keyCards[0]);
-            Assert.AreEqual(Rank.Ace, keyCards[0]);
-            Assert.AreEqual(Rank.Ace, keyCards[0]);
-            Assert.AreEqual(Rank.Ace, keyCards[0]);
-            Assert.AreEqual(Rank.Ace, keyCards[0]);
+            Assert.AreEqual(expectedHighCards[0], highCards[0]);
+            Assert.AreEqual(expectedHighCards[1], highCards[1]);
+            Assert.AreEqual(expectedHighCards[2], highCards[2]);
+            Assert.AreEqual(expectedHighCards[3], highCards[3]);
+            Assert.AreEqual(expectedHighCards[4], highCards[4]);
         }
     }
 }

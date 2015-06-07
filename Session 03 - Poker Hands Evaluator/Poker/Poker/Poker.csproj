@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Evaluators\FlushEvaluator.cs" />
     <Compile Include="Evaluators\HighCardEvaluator.cs" />
     <Compile Include="Evaluators\IEvaluator.cs" />
     <Compile Include="Model\Card.cs" />

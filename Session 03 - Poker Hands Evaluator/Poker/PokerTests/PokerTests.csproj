@@ -71,8 +71,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Dealer.cs" />
+    <Compile Include="EvaluatorsTests\FlushEvaluatorTests.cs" />
     <Compile Include="EvaluatorsTests\HighCardEvaluatorTests.cs" />
     <Compile Include="EvaluatorsTests\PairEvaluatorTests.cs" />
+    <Compile Include="PokerHandTests\FlushTests.cs" />
     <Compile Include="PokerHandTests\FourOfAKindTests.cs" />
     <Compile Include="PokerHandTests\FullHouseTests.cs" />
     <Compile Include="PokerHandTests\HighCardTests.cs" />

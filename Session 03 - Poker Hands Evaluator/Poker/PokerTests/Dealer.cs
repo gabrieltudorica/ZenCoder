@@ -88,5 +88,17 @@ namespace PokerTests
                 new Card(highCard, Suit.Hearts)
             };
         }
+
+        public static List<Card> DealFlush(Rank[] flush, Suit suit)
+        {
+            return new List<Card>
+            {
+                new Card(flush[0], suit),
+                new Card(flush[1], suit),
+                new Card(flush[2], suit),
+                new Card(flush[3], suit),
+                new Card(flush[4], suit)
+            };
+        }
     }
 }
