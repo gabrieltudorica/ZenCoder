@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Poker.Model;
 
 namespace PokerTests
@@ -99,6 +101,13 @@ namespace PokerTests
                 new Card(flush[3], suit),
                 new Card(flush[4], suit)
             };
+        }
+
+        public static Rank[] GetCardRanksDescending(Rank[] cards)
+        {
+            Array.Sort(cards);
+
+            return cards.Reverse().ToArray();
         }
     }
 }

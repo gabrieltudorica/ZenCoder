@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using Poker;
 using Poker.Model;
 
@@ -7,7 +9,28 @@ namespace PokerTests.PokerHandTests
     [TestFixture]
     public class HighCardTests
     {
-        private readonly PokerHand strongHighCard = new PokerHand(Dealer.DealStrongHighCard());
+        private static readonly List<Card> HighCardCards = Dealer.DealStrongHighCard();
+        private readonly PokerHand strongHighCard = new PokerHand(HighCardCards);
+
+        [Test]
+        public void GetRankCategory_ReturnsHighCard()
+        {
+            Assert.AreEqual(RankCategory.HighCard, strongHighCard.GetRankCategory());
+        }
+
+        [Test]
+        public void GetHighCardsDescending_ReturnsHighCardsInDescendingOrder()
+        {
+            List<Rank> expectedHighCards = HighCardCards.OrderByDescending(x => x.Rank).Select(x => x.Rank).ToList();
+            List<Rank> highCards = strongHighCard.GetHighCardsDescending();
+
+            Assert.AreEqual(expectedHighCards[0], highCards[0]);
+            Assert.AreEqual(expectedHighCards[1], highCards[1]);
+            Assert.AreEqual(expectedHighCards[2], highCards[2]);
+            Assert.AreEqual(expectedHighCards[3], highCards[3]);
+            Assert.AreEqual(expectedHighCards[4], highCards[4]);
+        }
+        
         private readonly PokerHand weakHighCard = new PokerHand(Dealer.DealWeakHighCard());        
         
         [Test]

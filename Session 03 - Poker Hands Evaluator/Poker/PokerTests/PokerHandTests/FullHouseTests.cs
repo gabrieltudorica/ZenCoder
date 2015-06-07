@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 using Poker;
 using Poker.Model;
 
@@ -7,7 +8,27 @@ namespace PokerTests.PokerHandTests
     [TestFixture]
     public class FullHouseTests
     {
-        private readonly PokerHand strongFullHouse = new PokerHand(Dealer.DealFullHouse(Rank.Ace, Rank.King));
+        private static readonly Rank[] ExpectedFullHouseHighCards = { Rank.Ace, Rank.King };
+
+        private readonly PokerHand strongFullHouse = 
+            new PokerHand(Dealer.DealFullHouse(ExpectedFullHouseHighCards[0], ExpectedFullHouseHighCards[1]));        
+
+        [Test]
+        public void GetRankCategory_ReturnsFullHouse_WhenFullHouseExists()
+        {
+            Assert.AreEqual(RankCategory.FullHouse, strongFullHouse.GetRankCategory());
+        }
+
+        [Test]
+        public void GetHighCardsDescending_ReturnsTwoHighCards_WhenFullHouseExists()
+        {
+            List<Rank> highCards = strongFullHouse.GetHighCardsDescending();
+
+            Assert.AreEqual(2, highCards.Count);
+            Assert.AreEqual(ExpectedFullHouseHighCards[0], highCards[0]);
+            Assert.AreEqual(ExpectedFullHouseHighCards[1], highCards[1]);
+        }
+
         private readonly PokerHand weakFullHouse = new PokerHand(Dealer.DealFullHouse(Rank.King, Rank.Queen));
 
         [Test]

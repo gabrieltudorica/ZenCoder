@@ -8,19 +8,40 @@ namespace PokerTests.PokerHandTests
     [TestFixture]
     public class TwoPairsTests
     {
+        private const Rank PairOne = Rank.Ace;
+        private const Rank PairTwo = Rank.Queen;
+        private const Rank WeakHighCard = Rank.Two;
+
         private static readonly List<Card> CardsForTwoPairsWeakHighCard = 
-            Dealer.DealTwoPairsOneHighCard(Rank.Ace,Rank.Queen, Rank.Two);
-        private readonly PokerHand twoPairsWeakHighCard = new PokerHand(CardsForTwoPairsWeakHighCard);
-        
-        private static readonly List<Card> CardsForTwoPairsStrongHighCard =
-            Dealer.DealTwoPairsOneHighCard(Rank.Ace, Rank.Queen, Rank.King);
-        private readonly PokerHand twoPairsStrongHighCard = new PokerHand(CardsForTwoPairsStrongHighCard);
+            Dealer.DealTwoPairsOneHighCard(PairOne,PairTwo, WeakHighCard);
+        private readonly PokerHand twoPairsWeakHighCard = new PokerHand(CardsForTwoPairsWeakHighCard);               
+
+        [Test]
+        public void GetRankCategory_ReturnsTwoPairs_WhenTwoPairsExist()
+        {
+            Assert.AreEqual(RankCategory.TwoPairs, twoPairsWeakHighCard.GetRankCategory());
+        }
+
+        [Test]
+        public void GetHighCardsDescending_ReturnsOneHighCard_WhenTwoPairsExist()
+        {
+            List<Rank> highCards = twoPairsWeakHighCard.GetHighCardsDescending();
+
+            Assert.AreEqual(3, highCards.Count);
+            Assert.AreEqual(PairOne, highCards[0]);
+            Assert.AreEqual(PairTwo, highCards[1]);
+            Assert.AreEqual(WeakHighCard, highCards[2]);
+        }
 
         [Test]
         public void TwoPairsWithOneHighCard_ComparedWith_SamePairsWithSameHighCard_ReturnsEqual()
         {
             Assert.AreEqual(Strength.Equal, twoPairsWeakHighCard.CompareWith(twoPairsWeakHighCard));
         }
+
+        private static readonly List<Card> CardsForTwoPairsStrongHighCard =
+            Dealer.DealTwoPairsOneHighCard(PairOne, PairTwo, Rank.King);
+        private readonly PokerHand twoPairsStrongHighCard = new PokerHand(CardsForTwoPairsStrongHighCard);
 
         [Test]
         public void TwoPairsWithWeakHighCard_ComparedWith_SamePairsWithStrongHighCard_ReturnsWeak()

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using Poker;
 using Poker.Model;
@@ -8,12 +7,35 @@ namespace PokerTests.PokerHandTests
 {
     [TestFixture]
     public class OnePairTests
-    {        
-        private readonly PokerHand weakPair = GetWeakPair();
-        private readonly PokerHand strongPair = GetStrongPair();
+    {
+        private static readonly Rank[] WeakHighCards = { Rank.Four, Rank.Three, Rank.Five };
+        
+        private const Rank StrongPair = Rank.Ace;
+        private readonly PokerHand strongPair =
+            new PokerHand(Dealer.DealOnePairThreeHighCards(StrongPair, WeakHighCards));                               
 
-        private readonly PokerHand pairWithWeakHighCards = GetPairWithWeakHighCards();
-        private readonly PokerHand pairWithStrongHighCards = GetPairWithStrongHighCards();
+        [Test]
+        public void GetRankCategory_ReturnsOnePair_WhenOnePairExists()
+        {
+            Assert.AreEqual(RankCategory.OnePair, strongPair.GetRankCategory());
+        }
+
+        [Test]
+        public void GetHighCardsDescending_ReturnsListWithPairCardAndHighCardsInDescendingOrder_WhenOnePairExists()
+        {
+            Rank[] expectedHighCardsDescendingOrder = Dealer.GetCardRanksDescending(WeakHighCards);
+
+            List<Rank> highCards = strongPair.GetHighCardsDescending();
+
+            Assert.AreEqual(4, highCards.Count);
+            Assert.AreEqual(StrongPair, highCards[0]);
+            Assert.AreEqual(expectedHighCardsDescendingOrder[0], highCards[1]);
+            Assert.AreEqual(expectedHighCardsDescendingOrder[1], highCards[2]);
+            Assert.AreEqual(expectedHighCardsDescendingOrder[2], highCards[3]);
+        }
+
+        private readonly PokerHand weakPair =
+            new PokerHand(Dealer.DealOnePairThreeHighCards(Rank.Two, WeakHighCards));
 
         [Test]
         public void WeakPair_ComparedWith_StrongPair_ReturnsWeak()
@@ -21,62 +43,32 @@ namespace PokerTests.PokerHandTests
             Assert.AreEqual(Strength.Weak, weakPair.CompareWith(strongPair));
         }
 
+        private static readonly Rank[] StrongHighCards = { Rank.King, Rank.Three, Rank.Five };
+        private readonly PokerHand pairWithStrongHighCards =
+            new PokerHand(Dealer.DealOnePairThreeHighCards(StrongPair, StrongHighCards));
+
         [Test]
         public void APairWithWeakHighCards_ComparedWith_SamePairWithStrongerHighCards_ReturnsWeak()
         {            
-            Assert.AreEqual(Strength.Weak, pairWithWeakHighCards.CompareWith(pairWithStrongHighCards));
+            Assert.AreEqual(Strength.Weak, weakPair.CompareWith(pairWithStrongHighCards));
         }
 
         [Test]
         public void APairWithStrongHighCards_ComparedWith_SamePairWithWeakHighCards_ReturnsStrong()
         {
-            Assert.AreEqual(Strength.Strong, pairWithStrongHighCards.CompareWith(pairWithWeakHighCards));
+            Assert.AreEqual(Strength.Strong, pairWithStrongHighCards.CompareWith(weakPair));
         }
 
         [Test]
         public void APairWithSomeHighCards_ComparedWith_SamePairWithSameHighCards_ReturnsEqual()
         {
-            Assert.AreEqual(Strength.Equal, pairWithWeakHighCards.CompareWith(pairWithWeakHighCards));
+            Assert.AreEqual(Strength.Equal, weakPair.CompareWith(weakPair));
         }
 
         [Test]
         public void StrongPair_ComparedWith_WeakPair_ReturnsStrong()
         {
             Assert.AreEqual(Strength.Strong, strongPair.CompareWith(weakPair));
-        }
-
-        private static readonly Rank[] HighCards = { Rank.Four, Rank.Three, Rank.Five };
-
-        private static PokerHand GetWeakPair()
-        {
-            List<Card> cards = Dealer.DealOnePairThreeHighCards(Rank.Two, HighCards);
-            
-            return new PokerHand(cards);
-        }
-
-        private static PokerHand GetStrongPair()
-        {
-            List<Card> cards = Dealer.DealOnePairThreeHighCards(Rank.Ace, HighCards);
-            
-            return new PokerHand(cards);
-        }
-
-        private static PokerHand GetPairWithWeakHighCards()
-        {
-            List<Card> cards = Dealer.DealOnePairThreeHighCards(Rank.Ace, HighCards);
-            
-            return new PokerHand(cards);
-        }
-
-        private static PokerHand GetPairWithStrongHighCards()
-        {
-            Rank[] highCardsCopy = new Rank[HighCards.Length];
-            Array.Copy(HighCards,highCardsCopy,HighCards.Length);
-            highCardsCopy[0] = Rank.King;
-
-            List<Card> cards = Dealer.DealOnePairThreeHighCards(Rank.Ace, highCardsCopy);
-
-            return new PokerHand(cards);
         }
     }
 }
